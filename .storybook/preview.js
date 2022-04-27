@@ -1,5 +1,7 @@
 import { RouterContext } from 'next/dist/shared/lib/router-context'
-import GlobalStyles from '../src/styles/global'
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles from 'styles/global'
+import { light } from 'styles/themes'
 
 export const parameters = {
   nextRouter: {
@@ -9,9 +11,9 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <>
+    <ThemeProvider theme={light}>
       <GlobalStyles />
       <Story />
-    </>
+    </ThemeProvider>
   )
 ]

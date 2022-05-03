@@ -2,7 +2,10 @@
 
 exports[`<Button /> should render the medium size by default 1`] = `
 .c0 {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -11,7 +14,6 @@ exports[`<Button /> should render the medium size by default 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  text-align: center;
   background: linear-gradient(180deg,#ff5f5f 0%,#f062c0 50%);
   color: #FAFAFA;
   border: 0;
@@ -26,7 +28,7 @@ exports[`<Button /> should render the medium size by default 1`] = `
 }
 
 .c0:hover {
-  background: linear-gradient(180deg,#e35565 0%,#d958ab 50%);
+  background: linear-gradient(180deg,#e35565 0%,#d958a6 50%);
 }
 
 <button

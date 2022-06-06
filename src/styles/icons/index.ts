@@ -5,6 +5,8 @@ import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
 import { Close as CloseIcon } from '@styled-icons/material-outlined/Close'
 import { FavoriteBorder as FavoriteBorderIcon } from 'styled-icons/material'
 import { Favorite as FavoriteIcon } from 'styled-icons/material'
+import { ArrowBackIos as ArrowBackIosIcon } from '@styled-icons/material-outlined/ArrowBackIos'
+import { ArrowForwardIos as ArrowForwardIosIcon } from '@styled-icons/material-outlined/ArrowForwardIos'
 
 export {
   MenuIcon,
@@ -13,5 +15,7 @@ export {
   FavoriteBorderIcon,
   SearchIcon,
   FavoriteIcon,
-  CloseIcon
+  CloseIcon,
+  ArrowBackIosIcon,
+  ArrowForwardIosIcon
 }

@@ -1,4 +1,4 @@
-import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
+import Ribbon, { RibbonColors, RibbonSize } from 'components/Ribbon'
 import Button from 'components/Button'
 
 import * as S from './styles'
@@ -11,7 +11,7 @@ export type BannerProps = {
   buttonLink: string
   ribbon?: React.ReactNode
   ribbonColor?: RibbonColors
-  ribbonSize?: RibbonSizes
+  ribbonSize?: RibbonSize
 }
 
 const Banner = ({

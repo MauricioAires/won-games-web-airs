@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react'
 import Button, { ButtonProps } from '.'
 import { AddShoppingCart } from '@styled-icons/material-outlined/AddShoppingCart'
 export default {
-  title: 'Button',
+  title: 'form/Button',
   component: Button,
   argTypes: {
     children: {

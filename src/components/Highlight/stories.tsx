@@ -3,7 +3,7 @@ import Highlight, { HighlightProps } from '.'
 import item from './mock'
 
 export default {
-  title: 'Highlight',
+  title: 'commom/Highlight',
   component: Highlight,
   args: {
     ...item

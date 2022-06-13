@@ -7,7 +7,8 @@ import { FavoriteBorder as FavoriteBorderIcon } from 'styled-icons/material'
 import { Favorite as FavoriteIcon } from 'styled-icons/material'
 import { ArrowBackIos as ArrowBackIosIcon } from '@styled-icons/material-outlined/ArrowBackIos'
 import { ArrowForwardIos as ArrowForwardIosIcon } from '@styled-icons/material-outlined/ArrowForwardIos'
-
+import { Email as EmailIcon } from '@styled-icons/material-outlined/Email'
+import { Lock as LockIcon } from '@styled-icons/material-outlined/Lock'
 export {
   MenuIcon,
   ShoppingCartIcon,
@@ -17,5 +18,7 @@ export {
   FavoriteIcon,
   CloseIcon,
   ArrowBackIosIcon,
-  ArrowForwardIosIcon
+  ArrowForwardIosIcon,
+  EmailIcon,
+  LockIcon
 }

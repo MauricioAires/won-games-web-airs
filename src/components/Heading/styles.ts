@@ -1,5 +1,4 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import media from 'styled-media-query'
 import { HeadingProps, LineColors } from '.'
 
 const wrapperModifiers = {
@@ -38,10 +37,6 @@ const wrapperModifiers = {
 export const Wrapper = styled.h2<HeadingProps>`
   ${({ theme, color, lineLeft, size, lineBottom, lineColor }) => css`
     color: ${theme.colors[color!]};
-
-    ${media.greaterThan('medium')`
-    font-size: ${theme.font.sizes.xlarge};
-    `}
 
     ${lineLeft && wrapperModifiers.lineLeft(theme, lineColor!)}
     ${lineBottom && wrapperModifiers.lineBottom(theme, lineColor!)}

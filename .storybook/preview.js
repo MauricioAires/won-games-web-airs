@@ -3,6 +3,11 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyles from 'styles/global'
 import { light } from 'styles/themes'
 
+/**
+ * Artigo de refência para a utilização de resoluções de telas
+ *
+ * @see https://www.browserstack.com/guide/ideal-screen-sizes-for-responsive-design
+ */
 export const parameters = {
   nextRouter: {
     Provider: RouterContext.Provider
@@ -19,6 +24,47 @@ export const parameters = {
         value: light.colors.mainBg
       }
     ]
+  },
+
+  viewport: {
+    viewports: [
+      {
+        name: 'XX-small (phone)',
+        styles: {
+          width: '576px',
+          height: '500px'
+        }
+      },
+      {
+        name: 'X-small (tablet)',
+        styles: {
+          width: '768px',
+          height: '500px'
+        }
+      },
+      {
+        name: 'Small (tablet)',
+        styles: {
+          width: '992px',
+          height: '500px'
+        }
+      },
+      {
+        name: 'Medium (laptop)',
+        styles: {
+          width: '1200px',
+          height: '500px'
+        }
+      },
+      {
+        name: 'Large',
+        styles: {
+          width: '1400px',
+          height: '500px'
+        }
+      }
+    ],
+    defaultViewport: 'Large'
   }
 }
 

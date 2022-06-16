@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import Link from 'next/link'
 import { CloseIcon, MenuIcon, SearchIcon, ShoppingCartIcon } from 'styles/icons'
 
 import MediaMatch from 'components/MediaMatch'
@@ -45,7 +45,11 @@ const Menu = ({ userName }: MenuProps) => {
 
         {!userName && (
           <MediaMatch greaterThan="medium">
-            <Button>Sing In</Button>
+            <Link href="/sign-in" passHref>
+              <Button role="link" as="a">
+                Sing In
+              </Button>
+            </Link>
           </MediaMatch>
         )}
       </S.MenuGroup>
@@ -67,13 +71,16 @@ const Menu = ({ userName }: MenuProps) => {
 
         {!userName && (
           <S.RegisterBox>
-            <Button fullWidth size="large">
-              Login in now
-            </Button>
+            <Link href="/sign-in" passHref>
+              <Button fullWidth size="large" as="a">
+                Sign in
+              </Button>
+            </Link>
             <span>or</span>
-            <S.CreateAccount href="#" title="Sign In">
-              Sign up
-            </S.CreateAccount>
+
+            <Link href="sign-up" passHref>
+              <S.CreateAccount title="Sign In">Sign up</S.CreateAccount>
+            </Link>
           </S.RegisterBox>
         )}
       </S.MenuFull>

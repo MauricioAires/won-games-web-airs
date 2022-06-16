@@ -12,7 +12,7 @@ describe('<FormSignIn />', () => {
 
     expect(
       screen.getByRole('button', {
-        name: /sign in now/i
+        name: /sign in/i
       })
     ).toBeInTheDocument()
   })

@@ -52,6 +52,7 @@ export default {
   },
   transition: {
     fast: '100ms ease-in-out',
-    slow: '0.1s ease-in-out'
+    slow: '0.1s ease-in-out',
+    default: '0.1s ease-in-out'
   }
 } as const

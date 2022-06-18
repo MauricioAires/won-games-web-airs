@@ -1,6 +1,9 @@
-import { ArrowBackIosIcon, ArrowForwardIosIcon } from 'styles/icons'
+import { useEffect, useRef, useState } from 'react'
+import SlickSlider from 'react-slick'
 
 import Slider, { SliderSettings } from 'components/Slider'
+import { ArrowBackIosIcon, ArrowForwardIosIcon, CloseIcon } from 'styles/icons'
+
 import * as S from './styles'
 
 export type GalleryImageProps = {
@@ -12,11 +15,17 @@ export type GalleryProps = {
   items: GalleryImageProps[]
 }
 
-const settings: SliderSettings = {
+const commonSetting: SliderSettings = {
   arrows: true,
   infinite: false,
-  slidesToShow: 4,
   lazyLoad: 'ondemand',
+  nextArrow: <ArrowForwardIosIcon aria-label="next image" />,
+  prevArrow: <ArrowBackIosIcon aria-label="previous image" />
+}
+
+const settings: SliderSettings = {
+  ...commonSetting,
+  slidesToShow: 4,
   responsive: [
     {
       breakpoint: 1375,
@@ -42,26 +51,74 @@ const settings: SliderSettings = {
         draggable: true
       }
     }
-  ],
-  nextArrow: <ArrowForwardIosIcon aria-label="next image" />,
-  prevArrow: <ArrowBackIosIcon aria-label="previous image" />
+  ]
 }
 
-const Gallery = ({ items }: GalleryProps) => (
-  <S.Wrapper>
-    <Slider settings={settings}>
-      {items.map((item, index) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          role="button"
-          key={`thumb-${index}`}
-          src={item.src}
-          loading="lazy"
-          alt={`Thumb - ${item.label}`}
-        />
-      ))}
-    </Slider>
-  </S.Wrapper>
-)
+const modalSettings: SliderSettings = {
+  ...commonSetting,
+  slidesToShow: 1
+}
 
+const Gallery = ({ items }: GalleryProps) => {
+  const slider = useRef<SlickSlider>(null)
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const handleKeyUp = ({ key }: KeyboardEvent) => {
+      key === 'Escape' && setIsOpen(false)
+    }
+
+    window.addEventListener('keyup', handleKeyUp)
+
+    // remover listener
+    return () => window.removeEventListener('keyup', handleKeyUp)
+  }, [])
+
+  return (
+    <S.Wrapper>
+      <Slider ref={slider} settings={settings}>
+        {items.map((item, index) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            role="button"
+            key={`thumb-${index}`}
+            src={item.src}
+            loading="lazy"
+            alt={`Thumb - ${item.label}`}
+            onClick={() => {
+              setIsOpen(true)
+              slider.current!.slickGoTo(index, true)
+            }}
+          />
+        ))}
+      </Slider>
+
+      <S.Modal aria-label="modal" isOpen={isOpen} aria-hidden={!isOpen}>
+        <S.Close
+          role="button"
+          aria-label="close modal"
+          onClick={() => {
+            setIsOpen(false)
+          }}
+        >
+          <CloseIcon size={40} />
+        </S.Close>
+
+        <S.Content>
+          <Slider ref={slider} settings={modalSettings}>
+            {items.map((item, index) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={`gallery-${index}`}
+                src={item.src}
+                loading="lazy"
+                alt={item.label}
+              />
+            ))}
+          </Slider>
+        </S.Content>
+      </S.Modal>
+    </S.Wrapper>
+  )
+}
 export default Gallery

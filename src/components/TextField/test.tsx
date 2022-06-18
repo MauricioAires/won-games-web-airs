@@ -47,17 +47,17 @@ describe('<TextField />', () => {
     expect(onInput).toHaveBeenCalledWith(text)
   })
 
-  it.skip('Is accessible by tab', () => {
-    renderWithTheme(
-      <TextField label="TextField" labelFor="TextField" id="TextField" />
-    )
+  // it.skip('Is accessible by tab', () => {
+  //   renderWithTheme(
+  //     <TextField label="TextField" labelFor="TextField" id="TextField" />
+  //   )
 
-    const input = screen.getByLabelText('TextField')
-    expect(document.body).toHaveFocus()
+  //   const input = screen.getByLabelText('TextField')
+  //   expect(document.body).toHaveFocus()
 
-    userEvent.tab()
-    expect(input).toHaveFocus()
-  })
+  //   userEvent.tab()
+  //   expect(input).toHaveFocus()
+  // })
 
   it('should render with Icon', () => {
     renderWithTheme(

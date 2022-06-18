@@ -10,6 +10,9 @@ import { ArrowForwardIos as ArrowForwardIosIcon } from '@styled-icons/material-o
 import { Email as EmailIcon } from '@styled-icons/material-outlined/Email'
 import { Lock as LockIcon } from '@styled-icons/material-outlined/Lock'
 import { AccountCircle as AccountCircleIcon } from '@styled-icons/material-outlined/AccountCircle'
+import { Windows as WindowsIcon } from '@styled-icons/fa-brands/Windows'
+import { Linux as LinuxIcon } from '@styled-icons/fa-brands/Linux'
+import { Apple as AppleIcon } from '@styled-icons/fa-brands/Apple'
 
 export {
   MenuIcon,
@@ -23,5 +26,8 @@ export {
   ArrowForwardIosIcon,
   EmailIcon,
   LockIcon,
-  AccountCircleIcon
+  AccountCircleIcon,
+  WindowsIcon,
+  LinuxIcon,
+  AppleIcon
 }

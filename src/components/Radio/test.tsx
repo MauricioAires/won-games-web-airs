@@ -51,15 +51,15 @@ describe('<Radio />', () => {
     expect(onCheck).toHaveBeenCalledWith('anyValue')
   })
 
-  it.skip('Should be accessible with tab', () => {
-    renderWithTheme(<Radio label="Radio" labelFor="Radio" />)
+  // it.skip('Should be accessible with tab', () => {
+  //   renderWithTheme(<Radio label="Radio" labelFor="Radio" />)
 
-    const radio = screen.getByLabelText('Radio')
+  //   const radio = screen.getByLabelText('Radio')
 
-    expect(document.body).toHaveFocus()
+  //   expect(document.body).toHaveFocus()
 
-    userEvent.tab()
+  //   userEvent.tab()
 
-    expect(radio).toHaveFocus()
-  })
+  //   expect(radio).toHaveFocus()
+  // })
 })

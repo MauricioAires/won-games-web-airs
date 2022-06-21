@@ -23,7 +23,8 @@ const GameDetails = ({
   developer,
   releaseDate,
   rating,
-  genres
+  genres,
+  publisher
 }: GameDetailsProps) => {
   const platformIcons = {
     mac: <AppleIcon title="Max" size={18} />,
@@ -68,7 +69,7 @@ const GameDetails = ({
 
         <S.Block>
           <S.Title>Publisher</S.Title>
-          <S.Description>2k</S.Description>
+          <S.Description>{publisher}</S.Description>
         </S.Block>
 
         <S.Block>

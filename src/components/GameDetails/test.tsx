@@ -77,6 +77,18 @@ describe('<GameDetails />', () => {
     expect(screen.getByText(/free/i)).toBeInTheDocument()
   })
 
+  it('should render publisher ', () => {
+    sut(props)
+
+    expect(screen.getByText(/walkabout/i)).toBeInTheDocument()
+  })
+
+  it('should render developer ', () => {
+    sut(props)
+
+    expect(screen.getByText(/different tales/i)).toBeInTheDocument()
+  })
+
   it('should render 18+ rating when BR18', () => {
     sut({
       ...props,

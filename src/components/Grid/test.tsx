@@ -3,7 +3,7 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import { Grid } from '.'
 
 describe('<Grid />', () => {
-  it('should render the heading', () => {
+  it('should render correclty', () => {
     const { container } = renderWithTheme(<Grid>Lorem Ipsum</Grid>)
 
     expect(container.firstChild).toMatchInlineSnapshot(`

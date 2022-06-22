@@ -1,9 +1,10 @@
-import * as S from './styles'
+import styled, { css } from 'styled-components'
 
-const Grid = () => (
-  <S.Wrapper>
-    <h1>Grid</h1>
-  </S.Wrapper>
-)
-
-export default Grid
+export const Grid = styled.div`
+  ${({ theme }) => css`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    grid-gap: ${theme.spacings.medium};
+    margin: ${theme.spacings.medium} 0;
+  `}
+`

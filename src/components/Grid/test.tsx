@@ -1,11 +1,24 @@
-import { render, screen } from '@testing-library/react'
+import { renderWithTheme } from 'utils/tests/helpers'
 
-import Grid from '.'
+import { Grid } from '.'
 
 describe('<Grid />', () => {
   it('should render the heading', () => {
-    render(<Grid />)
+    const { container } = renderWithTheme(<Grid>Lorem Ipsum</Grid>)
 
-    expect(screen.getByRole('heading', { name: /Grid/i })).toBeInTheDocument()
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      .c0 {
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(25rem,1fr));
+        grid-gap: 3.2rem;
+        margin: 3.2rem 0;
+      }
+
+      <div
+        class="c0"
+      >
+        Lorem Ipsum
+      </div>
+    `)
   })
 })

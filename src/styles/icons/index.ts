@@ -13,6 +13,7 @@ import { AccountCircle as AccountCircleIcon } from '@styled-icons/material-outli
 import { Windows as WindowsIcon } from '@styled-icons/fa-brands/Windows'
 import { Linux as LinuxIcon } from '@styled-icons/fa-brands/Linux'
 import { Apple as AppleIcon } from '@styled-icons/fa-brands/Apple'
+import { Download as DownloadIcon } from '@styled-icons/boxicons-solid/Download'
 
 export {
   MenuIcon,
@@ -29,5 +30,6 @@ export {
   AccountCircleIcon,
   WindowsIcon,
   LinuxIcon,
-  AppleIcon
+  AppleIcon,
+  DownloadIcon
 }

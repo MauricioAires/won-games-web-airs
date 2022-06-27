@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react'
 import CartList, { CartListProps } from '.'
 import mockCartList from './mock'
 export default {
-  title: 'CartList',
+  title: 'payment/CartList',
   component: CartList,
   args: {
     items: mockCartList,

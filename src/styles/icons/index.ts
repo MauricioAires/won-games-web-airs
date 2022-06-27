@@ -14,6 +14,7 @@ import { Windows as WindowsIcon } from '@styled-icons/fa-brands/Windows'
 import { Linux as LinuxIcon } from '@styled-icons/fa-brands/Linux'
 import { Apple as AppleIcon } from '@styled-icons/fa-brands/Apple'
 import { Download as DownloadIcon } from '@styled-icons/boxicons-solid/Download'
+import { Add as AddIcon } from 'styled-icons/material'
 
 export {
   MenuIcon,
@@ -31,5 +32,6 @@ export {
   WindowsIcon,
   LinuxIcon,
   AppleIcon,
-  DownloadIcon
+  DownloadIcon,
+  AddIcon
 }

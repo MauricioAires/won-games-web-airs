@@ -44,7 +44,7 @@ describe('<PaymentOptions />', () => {
       handlePayment: handlePayment
     })
 
-    userEvent.click(
+    await userEvent.click(
       screen.getByRole('button', {
         name: /buy now/i
       })
@@ -65,6 +65,7 @@ describe('<PaymentOptions />', () => {
     await userEvent.click(screen.getByLabelText(/4325/))
 
     // clicar no botão de comprar
+
     await userEvent.click(
       screen.getByRole('button', {
         name: /buy now/i

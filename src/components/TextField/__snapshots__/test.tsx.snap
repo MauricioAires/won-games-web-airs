@@ -80,7 +80,6 @@ exports[`<TextField /> should render with error 1`] = `
 >
   <label
     class="c1 c2"
-    for="TextField"
   >
     TextField
   </label>

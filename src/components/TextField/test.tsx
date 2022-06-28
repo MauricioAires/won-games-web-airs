@@ -8,7 +8,7 @@ import TextField from '.'
 
 describe('<TextField />', () => {
   it('Renders with Label', () => {
-    renderWithTheme(<TextField label="Label" labelFor="Field" id="Field" />)
+    renderWithTheme(<TextField label="Label" name="Label" />)
 
     expect(screen.getByLabelText('Label')).toBeInTheDocument()
   })
@@ -28,17 +28,13 @@ describe('<TextField />', () => {
   it('Changes its value when typing', async () => {
     const onInput = jest.fn()
     renderWithTheme(
-      <TextField
-        onInput={onInput}
-        label="TextField"
-        labelFor="TextField"
-        id="TextField"
-      />
+      <TextField onInput={onInput} label="TextField" name="TextField" />
     )
 
     const input = screen.getByRole('textbox')
     const text = 'This is my new text'
-    userEvent.type(input, text)
+
+    await userEvent.type(input, text)
 
     await waitFor(() => {
       expect(input).toHaveValue(text)
@@ -47,17 +43,18 @@ describe('<TextField />', () => {
     expect(onInput).toHaveBeenCalledWith(text)
   })
 
-  // it.skip('Is accessible by tab', () => {
-  //   renderWithTheme(
-  //     <TextField label="TextField" labelFor="TextField" id="TextField" />
-  //   )
+  it('Is accessible by tab', async () => {
+    renderWithTheme(<TextField label="TextField" name="TextField" />)
 
-  //   const input = screen.getByLabelText('TextField')
-  //   expect(document.body).toHaveFocus()
+    const input = screen.getByLabelText('TextField')
+    expect(document.body).toHaveFocus()
 
-  //   userEvent.tab()
-  //   expect(input).toHaveFocus()
-  // })
+    await userEvent.tab()
+
+    await waitFor(() => {
+      expect(input).toHaveFocus()
+    })
+  })
 
   it('should render with Icon', () => {
     renderWithTheme(
@@ -87,8 +84,7 @@ describe('<TextField />', () => {
       <TextField
         onInput={onInput}
         label="TextField"
-        labelFor="textField"
-        id="TextField"
+        name="TextField"
         disabled
       />
     )
@@ -98,7 +94,7 @@ describe('<TextField />', () => {
 
     const text = 'This is my new text'
 
-    userEvent.type(input, text)
+    await userEvent.type(input, text)
 
     await waitFor(() => {
       expect(input).not.toHaveValue(text)
@@ -112,7 +108,6 @@ describe('<TextField />', () => {
       <TextField
         icon={<ShoppingCartIcon data-testid="icon" />}
         label="TextField"
-        labelFor="TextField"
         error="Erro message"
       />
     )

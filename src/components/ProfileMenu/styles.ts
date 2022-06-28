@@ -1,5 +1,6 @@
 import styled, { css, DefaultTheme } from 'styled-components'
 import media from 'styled-media-query'
+
 export const Nav = styled.nav`
   ${({ theme }) => css`
     display: flex;
@@ -9,7 +10,7 @@ export const Nav = styled.nav`
       flex-direction: column;
       border: 0;
 
-      &:not(:last-child){
+      a:not(:last-child) {
         border-bottom: 0.1rem solid ${theme.colors.lightGray};
       }
     `}
@@ -21,6 +22,7 @@ const linkModifiers = {
     background: ${theme.colors.white};
     color: ${theme.colors.black};
   `,
+
   active: (theme: DefaultTheme) => css`
     background: ${theme.colors.primary};
     color: ${theme.colors.white};
@@ -57,6 +59,7 @@ export const Link = styled.a<LinkProps>`
       }
     `}
 
-    ${isActive ? linkModifiers.active(theme) : linkModifiers.default(theme)}
+    ${!isActive && linkModifiers.default(theme)};
+    ${isActive && linkModifiers.active(theme)};
   `}
 `

@@ -15,6 +15,9 @@ import { Linux as LinuxIcon } from '@styled-icons/fa-brands/Linux'
 import { Apple as AppleIcon } from '@styled-icons/fa-brands/Apple'
 import { Download as DownloadIcon } from '@styled-icons/boxicons-solid/Download'
 import { Add as AddIcon } from 'styled-icons/material'
+import { CreditCard as CreditCardIcon } from 'styled-icons/material'
+import { FormatListBulleted as FormatListBulletedIcon } from 'styled-icons/material'
+import { ExitToApp as ExitToAppIcon } from 'styled-icons/material'
 
 export {
   MenuIcon,
@@ -33,5 +36,8 @@ export {
   LinuxIcon,
   AppleIcon,
   DownloadIcon,
-  AddIcon
+  AddIcon,
+  CreditCardIcon,
+  FormatListBulletedIcon,
+  ExitToAppIcon
 }

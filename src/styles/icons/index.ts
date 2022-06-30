@@ -18,7 +18,7 @@ import { Add as AddIcon } from 'styled-icons/material'
 import { CreditCard as CreditCardIcon } from 'styled-icons/material'
 import { FormatListBulleted as FormatListBulletedIcon } from 'styled-icons/material'
 import { ExitToApp as ExitToAppIcon } from 'styled-icons/material'
-
+import { FilterList as FilterListIcon } from 'styled-icons/material'
 export {
   MenuIcon,
   ShoppingCartIcon,
@@ -39,5 +39,6 @@ export {
   AddIcon,
   CreditCardIcon,
   FormatListBulletedIcon,
-  ExitToAppIcon
+  ExitToAppIcon,
+  FilterListIcon
 }

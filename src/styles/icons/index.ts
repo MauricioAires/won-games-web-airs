@@ -19,6 +19,8 @@ import { CreditCard as CreditCardIcon } from 'styled-icons/material'
 import { FormatListBulleted as FormatListBulletedIcon } from 'styled-icons/material'
 import { ExitToApp as ExitToAppIcon } from 'styled-icons/material'
 import { FilterList as FilterListIcon } from 'styled-icons/material'
+import { KeyboardArrowDown as KeyboardArrowDownIcon } from '@styled-icons/material-outlined/KeyboardArrowDown'
+
 export {
   MenuIcon,
   ShoppingCartIcon,
@@ -40,5 +42,6 @@ export {
   CreditCardIcon,
   FormatListBulletedIcon,
   ExitToAppIcon,
-  FilterListIcon
+  FilterListIcon,
+  KeyboardArrowDownIcon
 }

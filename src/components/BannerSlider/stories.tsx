@@ -3,7 +3,7 @@ import BannerSlider, { BannerSliderProps } from '.'
 import items from './mock'
 
 export default {
-  title: 'commom/BannerSlider',
+  title: 'Library/BannerSlider',
   component: BannerSlider,
   args: { items },
   parameters: {

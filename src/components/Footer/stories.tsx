@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react'
 import Footer from '.'
 
 export default {
-  title: 'commom/Footer',
+  title: 'Library/Footer',
   component: Footer
 } as Meta
 

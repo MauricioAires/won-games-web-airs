@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react'
 import GameCard, { GameCardProps } from '.'
 
 export default {
-  title: 'commom/GameCard',
+  title: 'Library/GameCard',
   component: GameCard,
   args: {
     title: 'Population Zero',

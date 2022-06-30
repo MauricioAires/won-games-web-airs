@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react'
 import Banner, { BannerProps } from '.'
 
 export default {
-  title: 'commom/Banner',
+  title: 'Library/Banner',
   component: Banner,
   args: {
     img: 'https://source.unsplash.com/user/willianjusten/1042x580',

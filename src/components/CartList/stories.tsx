@@ -26,3 +26,9 @@ const Template: Story<CartListProps> = (args) => (
 )
 
 export const Default = Template.bind({})
+
+export const WithButton = Template.bind({})
+
+WithButton.args = {
+  hasButton: true
+}

@@ -21,4 +21,12 @@ describe('<CartList />', () => {
       color: '#F231A5'
     })
   })
+
+  it('should render the button', () => {
+    sut({
+      items: mockCartList,
+      total: 'R$ 330,00',
+      hasButton: true
+    })
+  })
 })

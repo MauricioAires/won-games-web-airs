@@ -24,6 +24,6 @@ describe('<CartDropdown />', () => {
     sut(props)
 
     expect(screen.getByText('R$ 330,00')).toBeInTheDocument()
-    expect(screen.getByText(props.items[0].title)).toBeInTheDocument()
+    expect(screen.getByText(props.items![0].title)).toBeInTheDocument()
   })
 })

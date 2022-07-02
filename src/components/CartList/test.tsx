@@ -24,9 +24,17 @@ describe('<CartList />', () => {
 
   it('should render the button', () => {
     sut({
-      items: mockCartList,
-      total: 'R$ 330,00',
+      ...props,
       hasButton: true
     })
+
+    expect(screen.getByText(/buy it now/i)).toBeInTheDocument()
+  })
+
+  it('should render empty if there are no games', () => {
+    sut({})
+
+    expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument()
+    expect(screen.queryByText(/total/i)).not.toBeInTheDocument()
   })
 })

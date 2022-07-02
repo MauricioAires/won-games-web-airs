@@ -32,3 +32,9 @@ export const WithButton = Template.bind({})
 WithButton.args = {
   hasButton: true
 }
+
+export const Empty = Template.bind({})
+
+Empty.args = {
+  items: []
+}

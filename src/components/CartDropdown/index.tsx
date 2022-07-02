@@ -6,7 +6,7 @@ import * as S from './styles'
 
 export type CartDropdownProps = {
   items?: GameItemProps[]
-  total: string
+  total?: string
 }
 
 const CartDropdown = ({ items = [], total }: CartDropdownProps) => (

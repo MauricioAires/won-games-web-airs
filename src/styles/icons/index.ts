@@ -20,6 +20,7 @@ import { FormatListBulleted as FormatListBulletedIcon } from 'styled-icons/mater
 import { ExitToApp as ExitToAppIcon } from 'styled-icons/material'
 import { FilterList as FilterListIcon } from 'styled-icons/material'
 import { KeyboardArrowDown as KeyboardArrowDownIcon } from '@styled-icons/material-outlined/KeyboardArrowDown'
+import { ChevronDown as ChevronDownIcon } from 'styled-icons/bootstrap'
 
 export {
   MenuIcon,
@@ -43,5 +44,6 @@ export {
   FormatListBulletedIcon,
   ExitToAppIcon,
   FilterListIcon,
-  KeyboardArrowDownIcon
+  KeyboardArrowDownIcon,
+  ChevronDownIcon
 }

@@ -19,7 +19,7 @@ export default function index(props: HomeTemplateProps) {
 /// getStaticProps => gerar um estático em build time
 // getServerSideProps => gerar via SSR a cada requisição
 // getInitialProps => gerar via ss a cada request
-export function getServerSideProps() {
+export async function getServerSideProps() {
   // faz uma lógica
   // buscar dados numa API
   // fazer calculo/leitura de context

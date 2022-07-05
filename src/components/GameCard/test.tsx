@@ -7,7 +7,8 @@ const props: GameCardProps = {
   title: 'Population Zero',
   developer: 'RockStart Games',
   img: 'https://source.unsplash.com/user/willianjusten/300x140',
-  price: 'R$ 235.00'
+  price: 'R$ 235.00',
+  slug: 'population-zero'
 }
 describe('<GameCard />', () => {
   it('should render correctly', () => {
@@ -32,6 +33,12 @@ describe('<GameCard />', () => {
         name: props.title
       })
     ).toHaveAttribute('src', props.img)
+
+    expect(
+      screen.getByRole('link', {
+        name: props.title
+      })
+    ).toHaveAttribute('href', `/game/${props.slug}`)
 
     //Verificar se o price foi reenderizado
     expect(screen.getByLabelText(/add to wishlist/i)).toBeInTheDocument()

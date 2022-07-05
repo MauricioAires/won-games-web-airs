@@ -6,7 +6,7 @@ import GameInfo, { GameInfoProps } from '.'
 const props = {
   title: 'Game title',
   description: 'Game description',
-  price: 'R$210.00'
+  price: 210
 }
 
 const sut = (props: GameInfoProps) => renderWithTheme(<GameInfo {...props} />)
@@ -18,7 +18,7 @@ describe('<GameInfo />', () => {
     expect(
       screen.getByRole('heading', { name: /game title/i })
     ).toBeInTheDocument()
-    expect(screen.getByText(/r\$210.00/i)).toBeInTheDocument()
+    expect(screen.getByText(/\$210\.00/i)).toBeInTheDocument()
     expect(screen.getByText(/game description/i)).toBeInTheDocument()
   })
 

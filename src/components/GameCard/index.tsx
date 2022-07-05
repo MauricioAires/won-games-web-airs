@@ -9,14 +9,15 @@ import {
   AddShoppingCartIcon
 } from 'styles/icons'
 import * as S from './styles'
+import formatPrice from 'utils/format-price'
 
 export type GameCardProps = {
   slug: string
   title: string
   developer: string
   img: string
-  price: string
-  promotionalPrice?: string
+  price: number
+  promotionalPrice?: number
   favorite?: boolean
   ribbon?: React.ReactNode
   ribbonColor?: RibbonColors
@@ -65,10 +66,12 @@ const GameCard = ({
       <S.BuyBox>
         {!!promotionalPrice && (
           <S.Price aria-label="Promotional price" isPromotional>
-            {price}
+            {formatPrice(price)}
           </S.Price>
         )}
-        <S.Price aria-label="Game price">{promotionalPrice || price}</S.Price>
+        <S.Price aria-label="Game price">
+          {formatPrice(promotionalPrice || price)}
+        </S.Price>
         <Button icon={<AddShoppingCartIcon />} size="small" />
       </S.BuyBox>
     </S.Content>

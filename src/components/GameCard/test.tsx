@@ -7,7 +7,7 @@ const props: GameCardProps = {
   title: 'Population Zero',
   developer: 'RockStart Games',
   img: 'https://source.unsplash.com/user/willianjusten/300x140',
-  price: 'R$ 235.00',
+  price: 235,
   slug: 'population-zero'
 }
 describe('<GameCard />', () => {
@@ -48,7 +48,7 @@ describe('<GameCard />', () => {
     // Render componente
     renderWithTheme(<GameCard {...props} />)
 
-    const price = screen.getByText(props.price)
+    const price = screen.getByText('$235.00')
     // Preço não tenha o line-through
     expect(price).not.toHaveStyle({
       'text-decoration': 'line-through'
@@ -62,10 +62,10 @@ describe('<GameCard />', () => {
   })
 
   it('should render a line-through in price when promocional', () => {
-    renderWithTheme(<GameCard {...props} promotionalPrice="R$ 15" />)
+    renderWithTheme(<GameCard {...props} promotionalPrice={15} />)
 
-    const price = screen.getByText(props.price)
-    const promotionalPrice = screen.getByText('R$ 15')
+    const price = screen.getByText('$235.00')
+    const promotionalPrice = screen.getByText('$15.00')
 
     expect(promotionalPrice).not.toHaveStyle({
       'text-decoration': 'line-through'

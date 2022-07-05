@@ -9,7 +9,7 @@ export default {
     title: 'Population Zero',
     developer: 'Rockstart Games',
     img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: 'R$ 235.00'
+    price: 235
   },
   argTypes: {
     promotionalPrice: {
@@ -46,7 +46,7 @@ export const WithPromotion: Story<GameCardProps> = (args) => (
 )
 
 WithPromotion.args = {
-  promotionalPrice: 'R$99.99',
+  promotionalPrice: 99.99,
   ribbon: '20% OFF',
   ribbonColor: 'primary',
   ribbonSize: 'small'

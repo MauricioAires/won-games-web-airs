@@ -1,4 +1,5 @@
-import { BannerFragment } from './../fragments/banner'
+import { BannerFragment, GameFragment } from './../fragments'
+
 import { gql } from '@apollo/client'
 
 export const QUERY_HOME = gql`
@@ -6,7 +7,15 @@ export const QUERY_HOME = gql`
     banners {
       ...BannerFragment
     }
+    newGames: games(
+      where: { release_date_lte: "2021-01-27" }
+      sort: "release_date:desc"
+      limit: 8
+    ) {
+      ...GameFragment
+    }
   }
 
   ${BannerFragment}
+  ${GameFragment}
 `

@@ -60,8 +60,8 @@ const props: GameTemplateProps = {
   gallery: mockGallery,
   description: `<h1>Custom HTML</h1>`,
   details: mockGameDetails,
-  upcommingGames: mockGamesSlider,
-  upcommingHighlight: mockHighlight,
+  upcomingGames: mockGamesSlider,
+  upcomingHighlight: mockHighlight,
   recommendedGames: mockGamesSlider
 }
 

@@ -1,4 +1,4 @@
-import { Story } from '@storybook/react'
+import { Meta, Story } from '@storybook/react'
 import ExploreSidebar, { ExploreSidebarProps } from '.'
 
 import mockExploreSidebar from './mock'
@@ -15,7 +15,7 @@ export default {
     items: mockExploreSidebar,
     onFilter: () => console.log('Filter ')
   }
-} as Metas
+} as Meta
 
 const Template: Story<ExploreSidebarProps> = (args) => (
   <ExploreSidebar {...args} />

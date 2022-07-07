@@ -14,6 +14,7 @@ import Empty from 'components/Empty'
 export type CartTemplateProps = {
   recommendedGames: GameCardProps[]
   recommendedHighlight: HighlightProps
+  recommendTitle: string
 } & CartListProps &
   Pick<PaymentOptionsProps, 'cards'>
 
@@ -22,7 +23,8 @@ const Cart = ({
   recommendedHighlight,
   items = [],
   total,
-  cards
+  cards,
+  recommendTitle
 }: CartTemplateProps) => {
   const handlePayment = () => {
     console.log('Handle payment action')
@@ -52,7 +54,7 @@ const Cart = ({
       </Container>
 
       <Showcase
-        title="You may like these games"
+        title={recommendTitle || 'You may like these games'}
         games={recommendedGames}
         highlight={recommendedHighlight}
       />

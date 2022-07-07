@@ -1,11 +1,15 @@
+import React from 'react'
+import userEvent from '@testing-library/user-event'
+import apolloCache from 'utils/apolloCache'
+
+import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/tests/helpers'
+import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 
 import mockItemsProps from 'components/ExploreSidebar/mock'
-import mockGamesCardSlider from 'components/GameCardSlider/mock'
+import { mockGames, mockFetchMore } from './mocks'
 
 import Game, { GamesTemplateProps } from '.'
-import React from 'react'
-import { screen } from '@testing-library/react'
 
 jest.mock('templates/Base', () => ({
   __esModule: true,
@@ -21,30 +25,57 @@ jest.mock('components/ExploreSidebar', () => ({
   }
 }))
 
-jest.mock('components/GameCard', () => ({
-  __esModule: true,
-  default: function Mock() {
-    return <div data-testid="Mock GameCard" />
-  }
-}))
-
 const props: GamesTemplateProps = {
-  games: [mockGamesCardSlider[0]],
   filterItems: mockItemsProps
 }
 
-const sut = (props: GamesTemplateProps) => renderWithTheme(<Game {...props} />)
+const sut = (props: GamesTemplateProps, mock: ReadonlyArray<MockedResponse>) =>
+  renderWithTheme(
+    <MockedProvider mocks={mock} cache={apolloCache}>
+      <Game {...props} />
+    </MockedProvider>
+  )
 
 describe('<Games />', () => {
-  it('should render sections', () => {
-    sut(props)
+  it('should render loading when starting the template', () => {
+    sut(props, [])
 
-    expect(screen.getByTestId('Mock ExploreSideBar')).toBeInTheDocument()
-    expect(screen.getByTestId('Mock GameCard')).toBeInTheDocument()
+    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
+  })
+
+  it('should render sections', async () => {
+    sut(props, [mockGames])
+
+    // it starts without data
+    // shows loading
+    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
+
+    // we wait until we have data to get the element
+    // get -> tem certeza do elemento
+    // query -> não tem o elemento
+    // find -> é para processoas assicronos
+    expect(await screen.findByTestId('Mock ExploreSideBar')).toBeInTheDocument()
+
+    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
     expect(
       screen.getByRole('button', {
         name: /show more/i
       })
     ).toBeInTheDocument()
+  })
+
+  it('should render more games whrn show more is clicked', async () => {
+    sut(props, [mockGames, mockFetchMore])
+
+    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
+    expect(screen.queryByText(/Fetch More Game/i)).not.toBeInTheDocument()
+
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: /show more/i
+      })
+    )
+
+    expect(await screen.findByText(/Fetch More Game/i)).toBeInTheDocument()
   })
 })

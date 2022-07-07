@@ -39,6 +39,7 @@ export async function getStaticProps() {
     }
   })
 
+  console.log('asjdiasjdijisjdiojasodjisajdiosaiodisoad', newGames)
   return {
     props: {
       revalidate: 60,

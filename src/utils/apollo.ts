@@ -2,7 +2,7 @@ import { ApolloClient, HttpLink, NormalizedCacheObject } from '@apollo/client'
 import { useMemo } from 'react'
 import apolloCache from './apolloCache'
 
-let apolloClient: ApolloClient<NormalizedCacheObject>
+let apolloClient: ApolloClient<NormalizedCacheObject | null>
 
 function createApolloCliente() {
   // grapQL provider
@@ -15,7 +15,7 @@ function createApolloCliente() {
   })
 }
 
-export function initializeApollo(initialState = {}) {
+export function initializeApollo(initialState = null) {
   /**
    * Modelo de coneção SINGLETON
    */
@@ -37,7 +37,7 @@ export function initializeApollo(initialState = {}) {
   return apolloClient
 }
 
-export function useApollo(initialState = {}) {
+export function useApollo(initialState = null) {
   const store = useMemo(() => initializeApollo(initialState), [initialState])
 
   return store

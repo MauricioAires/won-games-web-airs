@@ -1,4 +1,4 @@
-import { Story, Meta } from '@storybook/react'
+import { Story } from '@storybook/react'
 import ExploreSidebar, { ExploreSidebarProps } from '.'
 
 import mockExploreSidebar from './mock'
@@ -12,9 +12,10 @@ export default {
     }
   },
   args: {
-    items: mockExploreSidebar
+    items: mockExploreSidebar,
+    onFilter: () => console.log('Filter ')
   }
-} as Meta
+} as Metas
 
 const Template: Story<ExploreSidebarProps> = (args) => (
   <ExploreSidebar {...args} />
@@ -23,3 +24,10 @@ const Template: Story<ExploreSidebarProps> = (args) => (
 export const Default = Template.bind({})
 
 export const WithDefaultValues = Template.bind({})
+
+WithDefaultValues.args = {
+  initialValues: {
+    platforms: ['windows', 'linux'],
+    sort_by: 'low-to-high'
+  }
+}

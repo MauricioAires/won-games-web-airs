@@ -1,8 +1,10 @@
-import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { screen } from '@testing-library/react'
+import { css } from 'styled-components'
 import { renderWithTheme } from 'utils/tests/helpers'
 
 import ExploreSidebar from '.'
+import { Overlay } from './styles'
 
 import items from './mock'
 
@@ -14,7 +16,9 @@ describe('<ExploreSidebar />', () => {
     expect(
       screen.getByRole('heading', { name: /sort by/i })
     ).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /system/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /platforms/i })
+    ).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /genre/i })).toBeInTheDocument()
   })
 
@@ -41,7 +45,7 @@ describe('<ExploreSidebar />', () => {
       <ExploreSidebar
         items={items}
         onFilter={jest.fn}
-        initialValues={{ windows: true, sort_by: 'low-to-high' }}
+        initialValues={{ platforms: ['windows'], sort_by: 'low-to-high' }}
       />
     )
 
@@ -56,14 +60,15 @@ describe('<ExploreSidebar />', () => {
     renderWithTheme(
       <ExploreSidebar
         items={items}
-        initialValues={{ windows: true, sort_by: 'low-to-high' }}
+        initialValues={{ platforms: ['windows'], sort_by: 'low-to-high' }}
         onFilter={onFilter}
       />
     )
 
-    await userEvent.click(screen.getByRole('button', { name: /filter/i }))
-
-    expect(onFilter).toBeCalledWith({ windows: true, sort_by: 'low-to-high' })
+    expect(onFilter).toBeCalledWith({
+      platforms: ['windows'],
+      sort_by: 'low-to-high'
+    })
   })
 
   it('should filter with checked values', async () => {
@@ -75,11 +80,10 @@ describe('<ExploreSidebar />', () => {
     await userEvent.click(screen.getByLabelText(/linux/i))
     await userEvent.click(screen.getByLabelText(/low to high/i))
 
-    await userEvent.click(screen.getByRole('button', { name: /filter/i }))
-
+    // 1st render ( itialvalues) + 3 clickss
+    expect(onFilter).toHaveBeenCalledTimes(4)
     expect(onFilter).toBeCalledWith({
-      windows: true,
-      linux: true,
+      platforms: ['windows', 'linux'],
       sort_by: 'low-to-high'
     })
   })
@@ -92,8 +96,37 @@ describe('<ExploreSidebar />', () => {
     await userEvent.click(screen.getByLabelText(/low to high/i))
     await userEvent.click(screen.getByLabelText(/high to low/i))
 
+    expect(onFilter).toBeCalledWith({ sort_by: 'high-to-low' })
+  })
+
+  it.skip('should open/close sidebar when filtering on mobile ', async () => {
+    const { container } = renderWithTheme(
+      <ExploreSidebar items={items} onFilter={jest.fn} />
+    )
+
+    const variant = {
+      media: '(max-width:768px)',
+      modifier: String(css`
+        ${Overlay}
+      `)
+    }
+
+    const Element = container.firstChild
+
+    expect(Element).not.toHaveStyleRule('opacity', '1', variant)
+
+    await userEvent.click(screen.getByLabelText(/open filters/))
+
+    expect(await Element).toHaveStyleRule('opacity', '1', variant)
+
+    await userEvent.click(screen.getByLabelText(/close filters/))
+
+    expect(Element).not.toHaveStyleRule('opacity', '1', variant)
+
+    await userEvent.click(screen.getByLabelText(/open filters/))
+
     await userEvent.click(screen.getByRole('button', { name: /filter/i }))
 
-    expect(onFilter).toBeCalledWith({ sort_by: 'high-to-low' })
+    expect(Element).not.toHaveStyleRule('opacity', '1', variant)
   })
 })

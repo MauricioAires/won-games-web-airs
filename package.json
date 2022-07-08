@@ -43,8 +43,8 @@
     "styled-media-query": "^2.1.2"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/builder-webpack5": "^6.5.9",
+    "@storybook/addon-essentials": "6.5.9",
+    "@storybook/builder-webpack5": "^6.5.8",
     "@storybook/manager-webpack5": "^6.5.8",
     "@storybook/react": "6.5.8",
     "@testing-library/jest-dom": "^5.14.1",

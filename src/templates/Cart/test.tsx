@@ -49,6 +49,7 @@ jest.mock('components/Empty', () => ({
 const props: CartTemplateProps = {
   items: mockCartList,
   total: 'R$ 430,00',
+  recommendTitle: 'You may like these games',
   recommendedGames: mockGames,
   recommendedHighlight: mockHighlight,
   cards: mockPaymentOptions

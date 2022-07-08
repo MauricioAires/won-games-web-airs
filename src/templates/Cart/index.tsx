@@ -12,9 +12,9 @@ import * as S from './styles'
 import Empty from 'components/Empty'
 
 export type CartTemplateProps = {
+  recommendTitle: string
   recommendedGames: GameCardProps[]
   recommendedHighlight: HighlightProps
-  recommendTitle: string
 } & CartListProps &
   Pick<PaymentOptionsProps, 'cards'>
 

@@ -3,7 +3,7 @@ import { useQueryGame } from 'graphql/queries/games'
 import Base from 'templates/Base'
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import GameCard from 'components/GameCard'
-
+import Empty from 'components/Empty'
 import { KeyboardArrowDownIcon } from 'styles/icons'
 import { Grid } from 'components/Grid'
 
@@ -20,6 +20,7 @@ export type GamesTemplateProps = {
 const Games = ({ filterItems }: GamesTemplateProps) => {
   const { push, query } = useRouter()
   const { data, loading, fetchMore } = useQueryGame({
+    notifyOnNetworkStatusChange: true,
     variables: {
       limit: 15,
       where: parseQueryStringToWhere({
@@ -67,29 +68,46 @@ const Games = ({ filterItems }: GamesTemplateProps) => {
           items={filterItems}
           onFilter={handleFilter}
         />
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <section>
-            <Grid>
-              {data?.games!.map((game) => (
-                <GameCard
-                  key={game.slug}
-                  title={game.name}
-                  slug={game.slug}
-                  developer={game.developers[0].name}
-                  img={game.cover?.url || '/img/sgames/cyberpunk-1.jpg'}
-                  price={game.price}
-                />
-              ))}
-            </Grid>
 
-            <S.ShowMore role="button" onClick={handleShowMore}>
-              <p>Show More</p>
-              <KeyboardArrowDownIcon size={35} />
-            </S.ShowMore>
-          </section>
-        )}
+        <section>
+          <>
+            {data?.games.length ? (
+              <>
+                <Grid>
+                  {data?.games!.map((game) => (
+                    <GameCard
+                      key={game.slug}
+                      title={game.name}
+                      slug={game.slug}
+                      developer={game.developers[0].name}
+                      img={game.cover?.url || '/img/sgames/cyberpunk-1.jpg'}
+                      price={game.price}
+                    />
+                  ))}
+                </Grid>
+
+                <S.ShowMore>
+                  {loading ? (
+                    <S.ShowMoreLoading
+                      src="/img/dots.svg"
+                      alt="loading more games"
+                    />
+                  ) : (
+                    <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                      <p>Show More</p>
+                      <KeyboardArrowDownIcon size={35} />
+                    </S.ShowMoreButton>
+                  )}
+                </S.ShowMore>
+              </>
+            ) : (
+              <Empty
+                title=":("
+                description="We didn't find any games with this filter"
+              />
+            )}
+          </>
+        </section>
       </S.Main>
     </Base>
   )

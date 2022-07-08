@@ -1,5 +1,4 @@
 import React from 'react'
-import userEvent from '@testing-library/user-event'
 import apolloCache from 'utils/apolloCache'
 
 import { screen } from '@testing-library/react'
@@ -7,7 +6,6 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 
 import mockItemsProps from 'components/ExploreSidebar/mock'
-import { mockGames, mockFetchMore } from './mocks'
 
 import Game, { GamesTemplateProps } from '.'
 
@@ -49,45 +47,39 @@ const sut = (props: GamesTemplateProps, mock: ReadonlyArray<MockedResponse>) =>
   )
 
 describe('<Games />', () => {
-  it('should render loading when starting the template', () => {
+  it('should render empty when no games found', async () => {
     sut(props, [])
 
-    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
-  })
-
-  it('should render sections', async () => {
-    sut(props, [mockGames])
-
-    // it starts without data
-    // shows loading
-    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
-
-    // we wait until we have data to get the element
-    // get -> tem certeza do elemento
-    // query -> não tem o elemento
-    // find -> é para processoas assicronos
-    expect(await screen.findByTestId('Mock ExploreSideBar')).toBeInTheDocument()
-
-    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
     expect(
-      screen.getByRole('button', {
-        name: /show more/i
-      })
+      await screen.findByText(/we didn't find any games with this filter/i)
     ).toBeInTheDocument()
   })
 
-  it.skip('should render more games whrn show more is clicked', async () => {
-    sut(props, [mockGames, mockFetchMore])
+  // it('should render sections', async () => {
+  //   sut(props, [mockGames])
 
-    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
-    expect(screen.queryByText(/Fetch More Game/i)).not.toBeInTheDocument()
+  //   expect(await screen.findByTestId('Mock ExploreSideBar')).toBeInTheDocument()
 
-    await userEvent.click(
-      screen.getByRole('button', {
-        name: /show more/i
-      })
-    )
+  //   expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
+  //   expect(
+  //     screen.getByRole('button', {
+  //       name: /show more/i
+  //     })
+  //   ).toBeInTheDocument()
+  // })
 
-    expect(await screen.findByText(/Fetch More Game/i)).toBeInTheDocument()
-  })
+  // it.skip('should render more games whrn show more is clicked', async () => {
+  //   sut(props, [mockGames, mockFetchMore])
+
+  //   expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
+  //   expect(screen.queryByText(/Fetch More Game/i)).not.toBeInTheDocument()
+
+  //   await userEvent.click(
+  //     screen.getByRole('button', {
+  //       name: /show more/i
+  //     })
+  //   )
+
+  //   expect(await screen.findByText(/Fetch More Game/i)).toBeInTheDocument()
+  // })
 })

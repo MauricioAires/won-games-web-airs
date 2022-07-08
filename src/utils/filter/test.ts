@@ -1,5 +1,4 @@
-import { parceQueryStringToFilter } from './index'
-import { parseQueryStringToWhere } from '.'
+import { parseQueryStringToWhere, parseQueryStringToFilter } from '.'
 
 const filterItems = [
   { name: 'price_lte', type: 'radio' },
@@ -34,9 +33,9 @@ describe('$parseQueryStringToWhere', () => {
   })
 })
 
-describe('$parceQueryStringToFilter', () => {
+describe('$parseQueryStringToFilter', () => {
   it('should parse queryString to filter values format', () => {
-    const parsedQuery = parceQueryStringToFilter({
+    const parsedQuery = parseQueryStringToFilter({
       queryString,
       filterItems
     })

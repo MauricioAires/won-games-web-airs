@@ -30,7 +30,7 @@ export const parseQueryStringToWhere = ({
   return obj
 }
 
-export const parceQueryStringToFilter = ({
+export const parseQueryStringToFilter = ({
   queryString,
   filterItems
 }: ParceArgs) => {

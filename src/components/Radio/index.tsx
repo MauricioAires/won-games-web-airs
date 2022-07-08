@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes, memo } from 'react'
 
 import * as S from './styles'
 
@@ -12,34 +12,37 @@ export type RadioProps = {
   value?: RadioValue
 } & InputHTMLAttributes<HTMLInputElement>
 
-const Radio = ({
-  label,
-  onCheck,
-  labelColor = 'white',
-  labelFor = '',
-  value,
-  ...props
-}: RadioProps) => {
-  const onChange = () => {
-    !!onCheck && onCheck(value)
-  }
+// eslint-disable-next-line react/display-name
+const Radio = memo(
+  ({
+    label,
+    onCheck,
+    labelColor = 'white',
+    labelFor = '',
+    value,
+    ...props
+  }: RadioProps) => {
+    const onChange = () => {
+      !!onCheck && onCheck(value)
+    }
 
-  return (
-    <S.Wrapper>
-      <S.Input
-        id={labelFor}
-        type="radio"
-        value={value}
-        onChange={onChange}
-        {...props}
-      />
-      {!!label && (
-        <S.Label labelColor={labelColor} htmlFor={labelFor}>
-          {label}
-        </S.Label>
-      )}
-    </S.Wrapper>
-  )
-}
+    return (
+      <S.Wrapper>
+        <S.Input
+          id={labelFor}
+          type="radio"
+          value={value}
+          onChange={onChange}
+          {...props}
+        />
+        {!!label && (
+          <S.Label labelColor={labelColor} htmlFor={labelFor}>
+            {label}
+          </S.Label>
+        )}
+      </S.Wrapper>
+    )
+  }
+)
 
 export default Radio

@@ -103,7 +103,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     query: QUERY_UPCOMING,
     variables: {
       date: TODAY
-    }
+    },
+    fetchPolicy: 'no-cache'
   })
 
   return {

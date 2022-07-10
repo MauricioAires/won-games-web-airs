@@ -36,13 +36,13 @@ export async function getStaticProps() {
     query: QUERY_HOME,
     variables: {
       date: TODAY
-    }
+    },
+    fetchPolicy: 'no-cache' // garantir sempre dado novo na geraçao do estático
   })
 
-  console.log('asjdiasjdijisjdiojasodjisajdiosaiodisoad', newGames)
   return {
+    revalidate: 10,
     props: {
-      revalidate: 60,
       banners: bannerMapper(banners),
       newGamesTitle: sections?.newGames?.title,
       newGames: gamesMapper(newGames),

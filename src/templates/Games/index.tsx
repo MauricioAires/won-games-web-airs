@@ -11,7 +11,7 @@ import * as S from './styles'
 import { useRouter } from 'next/router'
 import { parseQueryStringToWhere, parseQueryStringToFilter } from 'utils/filter'
 import { ParsedUrlQueryInput } from 'querystring'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 
 export type GamesTemplateProps = {
   filterItems: ItemProps[]
@@ -30,6 +30,13 @@ const Games = ({ filterItems }: GamesTemplateProps) => {
       sort: query.sort as string | null
     }
   })
+
+  const hasMoreGames = useMemo(() => {
+    if (!data) {
+      return true
+    }
+    return data.games.length < (data.gamesConnection?.values?.length || 0)
+  }, [data])
 
   const handleFilter = useCallback(
     (items: ParsedUrlQueryInput) => {
@@ -86,19 +93,21 @@ const Games = ({ filterItems }: GamesTemplateProps) => {
                   ))}
                 </Grid>
 
-                <S.ShowMore>
-                  {loading ? (
-                    <S.ShowMoreLoading
-                      src="/img/dots.svg"
-                      alt="loading more games"
-                    />
-                  ) : (
-                    <S.ShowMoreButton role="button" onClick={handleShowMore}>
-                      <p>Show More</p>
-                      <KeyboardArrowDownIcon size={35} />
-                    </S.ShowMoreButton>
-                  )}
-                </S.ShowMore>
+                {hasMoreGames && (
+                  <S.ShowMore>
+                    {loading ? (
+                      <S.ShowMoreLoading
+                        src="/img/dots.svg"
+                        alt="loading more games"
+                      />
+                    ) : (
+                      <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                        <p>Show More</p>
+                        <KeyboardArrowDownIcon size={35} />
+                      </S.ShowMoreButton>
+                    )}
+                  </S.ShowMore>
+                )}
               </>
             ) : (
               <Empty

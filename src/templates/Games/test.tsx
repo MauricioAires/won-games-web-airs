@@ -5,6 +5,7 @@ import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/tests/helpers'
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 
+import { mockNoGames } from './mocks'
 import mockItemsProps from 'components/ExploreSidebar/mock'
 
 import Game, { GamesTemplateProps } from '.'
@@ -48,7 +49,7 @@ const sut = (props: GamesTemplateProps, mock: ReadonlyArray<MockedResponse>) =>
 
 describe('<Games />', () => {
   it('should render empty when no games found', async () => {
-    sut(props, [])
+    sut(props, [mockNoGames])
 
     expect(
       await screen.findByText(/we didn't find any games with this filter/i)

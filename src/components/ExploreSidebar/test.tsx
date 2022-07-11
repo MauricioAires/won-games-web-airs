@@ -99,6 +99,7 @@ describe('<ExploreSidebar />', () => {
     expect(onFilter).toBeCalledWith({ sort_by: 'high-to-low' })
   })
 
+  // Motivo do skip: não tá sendo encontrad nenhum item utilizafo o o modifiear
   it.skip('should open/close sidebar when filtering on mobile ', async () => {
     const { container } = renderWithTheme(
       <ExploreSidebar items={items} onFilter={jest.fn} />

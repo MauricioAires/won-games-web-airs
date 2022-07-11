@@ -1,11 +1,12 @@
 import React from 'react'
 import apolloCache from 'utils/apolloCache'
+import userEvent from '@testing-library/user-event'
 
 import { screen } from '@testing-library/react'
 import { renderWithTheme } from 'utils/tests/helpers'
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 
-import { mockNoGames } from './mocks'
+import { mockNoGames, mockGames, mockFetchMore } from './mocks'
 import mockItemsProps from 'components/ExploreSidebar/mock'
 
 import Game, { GamesTemplateProps } from '.'
@@ -26,6 +27,13 @@ jest.mock('templates/Base', () => ({
   __esModule: true,
   default: function Mock({ children }: { children: React.ReactNode }) {
     return <div data-testid="Mock Base">{children}</div>
+  }
+}))
+
+jest.mock('next/link', () => ({
+  __esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div>{children}</div>
   }
 }))
 
@@ -56,31 +64,31 @@ describe('<Games />', () => {
     ).toBeInTheDocument()
   })
 
-  // it('should render sections', async () => {
-  //   sut(props, [mockGames])
+  it('should render sections', async () => {
+    sut(props, [mockGames])
 
-  //   expect(await screen.findByTestId('Mock ExploreSideBar')).toBeInTheDocument()
+    expect(await screen.findByTestId('Mock ExploreSideBar')).toBeInTheDocument()
 
-  //   expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
-  //   expect(
-  //     screen.getByRole('button', {
-  //       name: /show more/i
-  //     })
-  //   ).toBeInTheDocument()
-  // })
+    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', {
+        name: /show more/i
+      })
+    ).toBeInTheDocument()
+  })
 
-  // it.skip('should render more games whrn show more is clicked', async () => {
-  //   sut(props, [mockGames, mockFetchMore])
+  it('should render more games whrn show more is clicked', async () => {
+    sut(props, [mockGames, mockFetchMore])
 
-  //   expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
-  //   expect(screen.queryByText(/Fetch More Game/i)).not.toBeInTheDocument()
+    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
+    expect(screen.queryByText(/Fetch More Game/i)).not.toBeInTheDocument()
 
-  //   await userEvent.click(
-  //     screen.getByRole('button', {
-  //       name: /show more/i
-  //     })
-  //   )
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: /show more/i
+      })
+    )
 
-  //   expect(await screen.findByText(/Fetch More Game/i)).toBeInTheDocument()
-  // })
+    expect(await screen.findByText(/Fetch More Game/i)).toBeInTheDocument()
+  })
 })

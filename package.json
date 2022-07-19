@@ -31,7 +31,7 @@
     "@apollo/client": "^3.6.9",
     "@types/lodash.xor": "^4.5.7",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "jest-environment-jsdom": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.3",
     "lodash.xor": "^4.5.0",
     "next": "^12.2.2",
     "next-pwa": "^5.5.4",

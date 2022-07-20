@@ -32,7 +32,9 @@ export const Wrapper = styled.div<WrapperProps>`
     background: ${theme.colors.white};
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-self: start;
+    min-height: 40rem;
 
     ${isEmpty &&
     css`

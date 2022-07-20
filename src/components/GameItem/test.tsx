@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import GameItem, { GameItemProps } from '.'
 
@@ -7,7 +6,7 @@ import mockGameItem from './mock'
 
 const props: GameItemProps = mockGameItem
 
-const sut = (props: GameItemProps) => renderWithTheme(<GameItem {...props} />)
+const sut = (props: GameItemProps) => render(<GameItem {...props} />)
 
 describe('<GameItem />', () => {
   it('should render the item', () => {

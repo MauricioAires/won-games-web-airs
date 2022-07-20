@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import Ribbon, { RibbonProps } from '.'
 
@@ -11,19 +10,19 @@ const props: RibbonProps = {
 
 describe('<Ribbon />', () => {
   it('should render the text correctly', () => {
-    renderWithTheme(<Ribbon {...props} />)
+    render(<Ribbon {...props} />)
 
     expect(screen.getByText(byText)).toBeInTheDocument()
   })
   it('should render with the primary color', () => {
-    renderWithTheme(<Ribbon {...props} />)
+    render(<Ribbon {...props} />)
 
     expect(screen.getByText(byText)).toHaveStyle({
       backgroundColor: '#F231A5'
     })
   })
   it('should render with the secondary color', () => {
-    renderWithTheme(<Ribbon {...props} color="secondary" />)
+    render(<Ribbon {...props} color="secondary" />)
 
     expect(screen.getByText(byText)).toHaveStyle({
       backgroundColor: '#3CD3C1'
@@ -31,7 +30,7 @@ describe('<Ribbon />', () => {
   })
 
   it('should render with the normal size as default', () => {
-    renderWithTheme(<Ribbon {...props} />)
+    render(<Ribbon {...props} />)
 
     expect(screen.getByText(byText)).toHaveStyle({
       height: '3.6rem',
@@ -40,7 +39,7 @@ describe('<Ribbon />', () => {
   })
 
   it('should render with the small size', () => {
-    renderWithTheme(<Ribbon {...props} size="small" />)
+    render(<Ribbon {...props} size="small" />)
 
     expect(screen.getByText(byText)).toHaveStyle({
       height: '2.6rem',

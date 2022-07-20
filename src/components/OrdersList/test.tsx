@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import OrdersList, { OrdersListProps } from '.'
 
@@ -23,8 +22,7 @@ const props: OrdersListProps = {
   items: mockOrdersList
 }
 
-const sut = (props: OrdersListProps) =>
-  renderWithTheme(<OrdersList {...props} />)
+const sut = (props: OrdersListProps) => render(<OrdersList {...props} />)
 
 describe('<OrdersList />', () => {
   it('should render order list correctly', () => {

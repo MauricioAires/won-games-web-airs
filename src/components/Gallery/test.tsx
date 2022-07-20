@@ -1,14 +1,13 @@
 import 'match-media-mock'
 import mockGallery from './mock'
 import Gallery, { GalleryProps } from '.'
-import { renderWithTheme } from 'utils/tests/helpers'
-import { fireEvent, screen } from '@testing-library/react'
+import { fireEvent, screen, render } from 'utils/test-utils'
 
 const props = {
   items: mockGallery.slice(0, 2)
 }
 
-const sut = (props: GalleryProps) => renderWithTheme(<Gallery {...props} />)
+const sut = (props: GalleryProps) => render(<Gallery {...props} />)
 
 describe('<Gallery />', () => {
   it('should render thumbnails as buttons', () => {

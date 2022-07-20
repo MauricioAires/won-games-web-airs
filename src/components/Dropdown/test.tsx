@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import userEvent from '@testing-library/user-event'
 
@@ -9,7 +8,7 @@ const props: DropdownProps = {
   title: <h1 aria-label="toggle dropdown">Click here</h1>,
   children: <span>content</span>
 }
-const sut = (props: DropdownProps) => renderWithTheme(<Dropdown {...props} />)
+const sut = (props: DropdownProps) => render(<Dropdown {...props} />)
 
 describe('<Dropdown />', () => {
   it('should render title', () => {

@@ -1,6 +1,5 @@
 import userEvent from '@testing-library/user-event'
-import { screen, waitFor } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, waitFor, render } from 'utils/test-utils'
 
 import mockPaymentOptions from './mock'
 import PaymentOptions, { PaymentOptionsProps } from '.'
@@ -11,7 +10,7 @@ const props: PaymentOptionsProps = {
 }
 
 const sut = (props: PaymentOptionsProps) =>
-  renderWithTheme(<PaymentOptions {...props} />)
+  render(<PaymentOptions {...props} />)
 
 describe('<PaymentOptions />', () => {
   it('should render the saved card options and the add new card button ', () => {

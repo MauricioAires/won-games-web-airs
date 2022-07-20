@@ -1,6 +1,6 @@
 import 'match-media-mock'
 import React from 'react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { render, screen } from 'utils/test-utils'
 
 import mockGames from 'components/GameCardSlider/mock'
 import mockHighlight from 'components/Highlight/mock'
@@ -8,8 +8,6 @@ import mockCartList from 'components/CartList/mock'
 import mockPaymentOptions from 'components/PaymentOptions/mock'
 
 import Cart, { CartTemplateProps } from '.'
-
-import { screen } from '@testing-library/react'
 
 jest.mock('templates/Base', () => ({
   __esModule: true,
@@ -55,7 +53,7 @@ const props: CartTemplateProps = {
   cards: mockPaymentOptions
 }
 
-const sut = (props: CartTemplateProps) => renderWithTheme(<Cart {...props} />)
+const sut = (props: CartTemplateProps) => render(<Cart {...props} />)
 
 describe('<Cart />', () => {
   it('should render sections', () => {

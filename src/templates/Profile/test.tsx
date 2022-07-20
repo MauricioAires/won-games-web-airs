@@ -1,8 +1,6 @@
 import 'match-media-mock'
 import React from 'react'
-import { screen } from '@testing-library/react'
-
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import Profile from '.'
 
@@ -33,7 +31,7 @@ jest.mock('components/ProfileMenu', () => ({
   }
 }))
 
-const sut = () => renderWithTheme(<Profile>Loren Ipsum</Profile>)
+const sut = () => render(<Profile>Loren Ipsum</Profile>)
 
 describe('<Profile />', () => {
   it('should render de sections', () => {

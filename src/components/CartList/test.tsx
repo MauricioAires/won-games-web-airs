@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import mockCartList from './mock'
 
@@ -10,7 +9,7 @@ const props: CartListProps = {
   total: 'R$ 330,00'
 }
 
-const sut = (props: CartListProps) => renderWithTheme(<CartList {...props} />)
+const sut = (props: CartListProps) => render(<CartList {...props} />)
 
 describe('<CartList />', () => {
   it('should render the cart list', () => {

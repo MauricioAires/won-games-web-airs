@@ -1,6 +1,5 @@
 import 'match-media-mock'
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import mockGameSlider from './mock'
 
@@ -11,7 +10,7 @@ const props: GameCardSliderProps = {
 }
 
 const sut = (props: GameCardSliderProps) =>
-  renderWithTheme(<GameCardSlider {...props} />)
+  render(<GameCardSlider {...props} />)
 
 describe('<GameSlider />', () => {
   it('should render with 4 active items', () => {

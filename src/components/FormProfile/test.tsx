@@ -1,9 +1,8 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import FormProfile from '.'
 
-const sut = () => renderWithTheme(<FormProfile />)
+const sut = () => render(<FormProfile />)
 
 describe('<FormProfile />', () => {
   it('should render the profile form', () => {

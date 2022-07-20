@@ -1,11 +1,10 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import CartIcon, { CartIconProps } from '.'
 
 const props: CartIconProps = {}
 
-const sut = (props: CartIconProps) => renderWithTheme(<CartIcon {...props} />)
+const sut = (props: CartIconProps) => render(<CartIcon {...props} />)
 
 describe('<CartIcon />', () => {
   it('should render without badge', () => {

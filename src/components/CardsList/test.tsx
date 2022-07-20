@@ -1,6 +1,5 @@
-import { screen } from '@testing-library/react'
+import { screen, render } from 'utils/test-utils'
 import mockCards from 'components/PaymentOptions/mock'
-import { renderWithTheme } from 'utils/tests/helpers'
 
 import CardsList, { CardsListProps } from '.'
 
@@ -8,7 +7,7 @@ const props: CardsListProps = {
   cards: mockCards
 }
 
-const sut = (props: CardsListProps) => renderWithTheme(<CardsList {...props} />)
+const sut = (props: CardsListProps) => render(<CardsList {...props} />)
 
 describe('<CardsList />', () => {
   it('should render the cards list correctly', () => {

@@ -1,4 +1,4 @@
-import { renderWithTheme } from 'utils/tests/helpers'
+import { render, screen } from 'utils/test-utils'
 
 import mockGameInfo from 'components/GameInfo/mock'
 import mockGallery from 'components/Gallery/mock'
@@ -7,7 +7,6 @@ import mockGamesSlider from 'components/GameCardSlider/mock'
 import mockHighlight from 'components/Highlight/mock'
 
 import Game, { GameTemplateProps } from './'
-import { screen } from '@testing-library/react'
 
 /**
  * mock de componentes
@@ -69,9 +68,9 @@ const props: GameTemplateProps = {
 
 /**
  * Template de renderização, evitar a repetição da
- * chamada da função renderWithTheme and destrcut props
+ * chamada da função render  and destrcut props
  */
-const sut = (props: GameTemplateProps) => renderWithTheme(<Game {...props} />)
+const sut = (props: GameTemplateProps) => render(<Game {...props} />)
 
 describe('<Game />', () => {
   it('should render the template with componentes', () => {

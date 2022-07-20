@@ -2,8 +2,8 @@ import React from 'react'
 import apolloCache from 'utils/apolloCache'
 import userEvent from '@testing-library/user-event'
 
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
+
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 
 import { mockNoGames, mockGames, mockFetchMore } from './mocks'
@@ -49,7 +49,7 @@ const props: GamesTemplateProps = {
 }
 
 const sut = (props: GamesTemplateProps, mock: ReadonlyArray<MockedResponse>) =>
-  renderWithTheme(
+  render(
     <MockedProvider mocks={mock} cache={apolloCache}>
       <Game {...props} />
     </MockedProvider>

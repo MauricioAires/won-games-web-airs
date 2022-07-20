@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import TextContent, { TextContentProps } from '.'
 
@@ -7,8 +6,7 @@ const props = {
   title: 'Description',
   content: `<h1>Content</h1>`
 }
-const sut = (props: TextContentProps) =>
-  renderWithTheme(<TextContent {...props} />)
+const sut = (props: TextContentProps) => render(<TextContent {...props} />)
 
 describe('<TextContent />', () => {
   it('should render the title and content', () => {

@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import GameInfo, { GameInfoProps } from '.'
 
@@ -9,7 +8,7 @@ const props = {
   price: 210
 }
 
-const sut = (props: GameInfoProps) => renderWithTheme(<GameInfo {...props} />)
+const sut = (props: GameInfoProps) => render(<GameInfo {...props} />)
 
 describe('<GameInfo />', () => {
   it('should render game informations', () => {

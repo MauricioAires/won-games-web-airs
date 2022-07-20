@@ -1,12 +1,11 @@
 import GameDetails, { GameDetailsProps } from '.'
 import mockGameDetails from './mock'
-import { renderWithTheme } from 'utils/tests/helpers'
-import { screen } from '@testing-library/react'
+
+import { screen, render } from 'utils/test-utils'
 
 const props = mockGameDetails
 
-const sut = (props: GameDetailsProps) =>
-  renderWithTheme(<GameDetails {...props} />)
+const sut = (props: GameDetailsProps) => render(<GameDetails {...props} />)
 
 describe('<GameDetails />', () => {
   it('should render the blocks', () => {

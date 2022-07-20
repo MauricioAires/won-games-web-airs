@@ -1,5 +1,5 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
+
 import userEvent from '@testing-library/user-event'
 
 import UserDropdown, { UserDropdownProps } from '.'
@@ -8,8 +8,7 @@ const props: UserDropdownProps = {
   username: 'Mauricio'
 }
 
-const sut = (props: UserDropdownProps) =>
-  renderWithTheme(<UserDropdown {...props} />)
+const sut = (props: UserDropdownProps) => render(<UserDropdown {...props} />)
 
 describe('<UserDropdown />', () => {
   it('should render the username', () => {

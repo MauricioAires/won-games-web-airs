@@ -1,10 +1,9 @@
-import { renderWithTheme } from 'utils/tests/helpers'
+import { render, screen } from 'utils/test-utils'
 
 import mockGames from 'components/GameCardSlider/mock'
 import mockHighlight from 'components/Highlight/mock'
 
 import Wishlist, { WishlistTemplateProps } from '.'
-import { screen } from '@testing-library/react'
 
 jest.mock('components/Showcase', () => ({
   __esModule: true,
@@ -26,8 +25,7 @@ const props: WishlistTemplateProps = {
   recommendedHighlight: mockHighlight
 }
 
-const sut = (props: WishlistTemplateProps) =>
-  renderWithTheme(<Wishlist {...props} />)
+const sut = (props: WishlistTemplateProps) => render(<Wishlist {...props} />)
 
 describe('<Wishlist />', () => {
   it('should render correctly', () => {

@@ -1,5 +1,5 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
+
 import mockCartList from 'components/CartList/mock'
 
 import CartDropdown, { CartDropdownProps } from '.'
@@ -9,8 +9,7 @@ const props: CartDropdownProps = {
   total: 'R$ 330,00'
 }
 
-const sut = (props: CartDropdownProps) =>
-  renderWithTheme(<CartDropdown {...props} />)
+const sut = (props: CartDropdownProps) => render(<CartDropdown {...props} />)
 
 describe('<CartDropdown />', () => {
   it('should render <CartIcon/> and its badge', () => {

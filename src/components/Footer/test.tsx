@@ -1,10 +1,9 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import Footer from '.'
 
 describe('<Footer />', () => {
-  renderWithTheme(<Footer />)
+  render(<Footer />)
 
   it('should render 4 columns topics', () => {
     expect(

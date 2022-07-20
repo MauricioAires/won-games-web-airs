@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import Empty, { EmptyProps } from '.'
 
@@ -9,7 +8,7 @@ const props: EmptyProps = {
   hasLink: true
 }
 
-const sut = (props: EmptyProps) => renderWithTheme(<Empty {...props} />)
+const sut = (props: EmptyProps) => render(<Empty {...props} />)
 
 describe('<Empty />', () => {
   it('should render correctly', () => {

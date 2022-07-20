@@ -1,6 +1,5 @@
 import 'match-media-mock'
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import gameMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
@@ -13,7 +12,7 @@ const props: ShowcaseProps = {
   games: gameMock.slice(0, 1)
 }
 
-const sut = (props: ShowcaseProps) => renderWithTheme(<Showcase {...props} />)
+const sut = (props: ShowcaseProps) => render(<Showcase {...props} />)
 
 describe('<Showcase />', () => {
   it('should render full showcase', () => {

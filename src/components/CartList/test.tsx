@@ -37,6 +37,22 @@ describe('<CartList />', () => {
     expect(screen.getByText(/buy it now/i)).toBeInTheDocument()
   })
 
+  it('should render loading', () => {
+    sut(
+      {
+        hasButton: true
+      },
+      {
+        cartProviderProps: {
+          ...CartContextDefaultValue,
+          loading: true
+        }
+      }
+    )
+
+    expect(screen.getByTitle(/loading/i)).toBeInTheDocument()
+  })
+
   it('should render empty if there are no games', () => {
     sut()
 

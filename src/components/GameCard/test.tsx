@@ -3,6 +3,7 @@ import { fireEvent, screen, render } from 'utils/test-utils'
 import GameCard, { GameCardProps } from '.'
 
 const props: GameCardProps = {
+  id: '1',
   title: 'Population Zero',
   developer: 'RockStart Games',
   img: 'https://source.unsplash.com/user/willianjusten/300x140',

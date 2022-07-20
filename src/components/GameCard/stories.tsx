@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react'
+import { CartContextData } from 'hooks/use-cart'
 import GameCard, { GameCardProps } from '.'
 
 export default {
@@ -25,7 +26,7 @@ export default {
   }
 } as Meta
 
-export const Default: Story<GameCardProps> = (args) => (
+const Template: Story<GameCardProps & CartContextData> = (args) => (
   <div
     style={{
       width: '30rem'
@@ -35,15 +36,15 @@ export const Default: Story<GameCardProps> = (args) => (
   </div>
 )
 
-export const WithPromotion: Story<GameCardProps> = (args) => (
-  <div
-    style={{
-      width: '30rem'
-    }}
-  >
-    <GameCard {...args} />
-  </div>
-)
+export const Default = Template.bind({})
+
+export const IsInCart = Template.bind({})
+
+IsInCart.args = {
+  isInCart: () => true
+}
+
+export const WithPromotion = Template.bind({})
 
 WithPromotion.args = {
   promotionalPrice: 99.99,

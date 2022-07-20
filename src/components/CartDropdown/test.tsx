@@ -1,28 +1,36 @@
-import { screen, render } from 'utils/test-utils'
+import { screen, render, CustomRenderProps } from 'utils/test-utils'
 
 import mockCartList from 'components/CartList/mock'
 
-import CartDropdown, { CartDropdownProps } from '.'
+import CartDropdown from '.'
+import { CartContextDefaultValue } from 'hooks/use-cart'
 
-const props: CartDropdownProps = {
-  items: mockCartList,
-  total: 'R$ 330,00'
+const renderProps: CustomRenderProps = {
+  cartProviderProps: {
+    ...CartContextDefaultValue,
+    items: mockCartList,
+    quantity: mockCartList.length,
+    total: 'R$ 330,00'
+  }
 }
 
-const sut = (props: CartDropdownProps) => render(<CartDropdown {...props} />)
+const sut = (renderProps: CustomRenderProps = {}) =>
+  render(<CartDropdown />, {
+    ...renderProps
+  })
 
 describe('<CartDropdown />', () => {
   it('should render <CartIcon/> and its badge', () => {
-    sut(props)
+    sut(renderProps)
 
     expect(screen.getByLabelText(/shopping cart/i)).toBeInTheDocument()
-    expect(screen.getByText(`${props.items!.length}`)).toBeInTheDocument()
+    expect(screen.getByText(`${mockCartList!.length}`)).toBeInTheDocument()
   })
 
   it('should render Dropdown content with cart items and total', () => {
-    sut(props)
+    sut(renderProps)
 
     expect(screen.getByText('R$ 330,00')).toBeInTheDocument()
-    expect(screen.getByText(props.items![0].title)).toBeInTheDocument()
+    expect(screen.getByText(mockCartList![0].title)).toBeInTheDocument()
   })
 })

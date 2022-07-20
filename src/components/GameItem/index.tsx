@@ -11,7 +11,7 @@ export type PaymentInfoProps = {
 }
 
 export type GameItemProps = {
-  img: string
+  img?: string
   title: string
   price: string
   downloadLink?: string

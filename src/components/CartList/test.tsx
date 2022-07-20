@@ -1,19 +1,24 @@
-import { screen, render } from 'utils/test-utils'
-
-import mockCartList from './mock'
+import { CartContextDefaultValue } from 'hooks/use-cart'
+import { screen, render, CustomRenderProps } from 'utils/test-utils'
 
 import CartList, { CartListProps } from '.'
+import mockItems from './mock'
 
-const props: CartListProps = {
-  items: mockCartList,
-  total: 'R$ 330,00'
+const renderProps: CustomRenderProps = {
+  cartProviderProps: {
+    ...CartContextDefaultValue,
+    items: mockItems,
+    total: 'R$ 330,00'
+  }
 }
-
-const sut = (props: CartListProps) => render(<CartList {...props} />)
+const sut = (props: CartListProps = {}, renderProps: CustomRenderProps = {}) =>
+  render(<CartList {...props} />, {
+    ...renderProps
+  })
 
 describe('<CartList />', () => {
   it('should render the cart list', () => {
-    sut(props)
+    sut({}, renderProps)
 
     expect(screen.getAllByRole('heading')).toHaveLength(2)
     expect(screen.getByText('R$ 330,00')).toHaveStyle({
@@ -22,16 +27,18 @@ describe('<CartList />', () => {
   })
 
   it('should render the button', () => {
-    sut({
-      ...props,
-      hasButton: true
-    })
+    sut(
+      {
+        hasButton: true
+      },
+      renderProps
+    )
 
     expect(screen.getByText(/buy it now/i)).toBeInTheDocument()
   })
 
   it('should render empty if there are no games', () => {
-    sut({})
+    sut()
 
     expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument()
     expect(screen.queryByText(/total/i)).not.toBeInTheDocument()

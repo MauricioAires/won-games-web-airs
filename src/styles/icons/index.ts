@@ -1,4 +1,5 @@
 import { AddShoppingCart as AddShoppingCartIcon } from '@styled-icons/material-outlined/AddShoppingCart'
+import { RemoveShoppingCart as RemoveShoppingCartIcon } from '@styled-icons/material-outlined/RemoveShoppingCart'
 import { Menu2 as MenuIcon } from '@styled-icons/remix-fill/Menu2'
 import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart'
 import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
@@ -45,5 +46,6 @@ export {
   ExitToAppIcon,
   FilterListIcon,
   KeyboardArrowDownIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
+  RemoveShoppingCartIcon
 }

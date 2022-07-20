@@ -1,9 +1,8 @@
-import { render, screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { screen, render } from 'utils/test-utils'
 
 import {{pascalCase name}} from '.'
 
-const sut = () => renderWithTheme(<{{pascalCase name}} />)
+const sut = () => render(<{{pascalCase name}} />)
 
 describe('<{{pascalCase name}} />', () => {
   it('should render the heading', () => {

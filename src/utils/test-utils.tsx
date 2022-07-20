@@ -9,7 +9,7 @@ import {
 import { ThemeProvider } from 'styled-components'
 import { light } from 'styles/themes'
 
-type CustomRenderProps = {
+export type CustomRenderProps = {
   cartProviderProps?: CartContextData
 } & Omit<RenderOptions, 'queries'>
 

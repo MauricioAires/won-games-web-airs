@@ -1,31 +1,33 @@
-import { screen, render } from 'utils/test-utils'
+import { CartContextDefaultValue } from 'hooks/use-cart'
+import { screen, render, CustomRenderProps } from 'utils/test-utils'
 
-import CartIcon, { CartIconProps } from '.'
+import CartIcon from '.'
 
-const props: CartIconProps = {}
-
-const sut = (props: CartIconProps) => render(<CartIcon {...props} />)
+const sut = (props: CustomRenderProps) =>
+  render(<CartIcon />, {
+    ...props
+  })
 
 describe('<CartIcon />', () => {
   it('should render without badge', () => {
-    sut(props)
+    sut({
+      cartProviderProps: {
+        ...CartContextDefaultValue,
+        quantity: 0
+      }
+    })
 
     expect(screen.getByLabelText(/shopping cart/i)).toBeInTheDocument()
     expect(screen.queryByLabelText(/cart items/i)).not.toBeInTheDocument()
   })
   it('should render with badge', () => {
     sut({
-      quantity: 12
+      cartProviderProps: {
+        ...CartContextDefaultValue,
+        quantity: 3
+      }
     })
     expect(screen.getByLabelText(/cart items/i)).toBeInTheDocument()
-    expect(screen.getByText(/12/i)).toBeInTheDocument()
-  })
-
-  it('should render with badge only if has positive number', () => {
-    sut({
-      quantity: -1
-    })
-    expect(screen.queryByLabelText(/cart items/i)).not.toBeInTheDocument()
-    expect(screen.queryByText(/-1/i)).not.toBeInTheDocument()
+    expect(screen.getByText(/3/i)).toBeInTheDocument()
   })
 })

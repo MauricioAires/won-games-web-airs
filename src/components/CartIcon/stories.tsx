@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import CartIcon, { CartIconProps } from '.'
+import CartIcon from '.'
 
 export default {
   title: 'Library/CartIcon',
@@ -11,7 +11,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<CartIconProps> = (args) => <CartIcon {...args} />
+const Template: Story = (args) => <CartIcon {...args} />
 
 export const Default = Template.bind({})
 

@@ -9,7 +9,6 @@ import { GameCardProps } from 'components/GameCard'
 import { HighlightProps } from 'components/Highlight'
 
 import * as S from './styles'
-import Empty from 'components/Empty'
 
 export type CartTemplateProps = {
   recommendTitle: string
@@ -21,8 +20,6 @@ export type CartTemplateProps = {
 const Cart = ({
   recommendedGames,
   recommendedHighlight,
-  items = [],
-  total,
   cards,
   recommendTitle
 }: CartTemplateProps) => {
@@ -37,18 +34,10 @@ const Cart = ({
           My cart
         </Heading>
 
-        {items.length ? (
-          <S.Content>
-            <CartList items={items} total={total} />
-            <PaymentOptions cards={cards} handlePayment={handlePayment} />
-          </S.Content>
-        ) : (
-          <Empty
-            title="Your cart is empty"
-            description="Go back to the store and explore great games and offers"
-            hasLink
-          />
-        )}
+        <S.Content>
+          <CartList />
+          <PaymentOptions cards={cards} handlePayment={handlePayment} />
+        </S.Content>
 
         <Divider />
       </Container>

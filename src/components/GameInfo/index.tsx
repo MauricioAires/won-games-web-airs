@@ -4,17 +4,19 @@ import Button from 'components/Button'
 import Heading from 'components/Heading'
 import Ribbon from 'components/Ribbon'
 
-import { AddShoppingCartIcon, FavoriteBorderIcon } from 'styles/icons'
+import { FavoriteBorderIcon } from 'styles/icons'
 
 import * as S from './styles'
+import CartButton from 'components/CartButton'
 
 export type GameInfoProps = {
+  id: string
   title: string
   description: string
   price: number
 }
 
-const GameInfo = ({ title, description, price }: GameInfoProps) => (
+const GameInfo = ({ id, title, description, price }: GameInfoProps) => (
   <S.Wrapper>
     <Heading color="black" lineBottom>
       {title}
@@ -25,9 +27,7 @@ const GameInfo = ({ title, description, price }: GameInfoProps) => (
     <S.Description>{description}</S.Description>
 
     <S.ButtonWrapper>
-      <Button icon={<AddShoppingCartIcon />} size="large">
-        Add to cart
-      </Button>
+      <CartButton id={id} size="large" hasText />
       <Button icon={<FavoriteBorderIcon />} size="large" minimal>
         Wishlist
       </Button>

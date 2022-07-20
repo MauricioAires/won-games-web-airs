@@ -6,6 +6,7 @@ export default {
   title: 'Library/GameCard',
   component: GameCard,
   args: {
+    id: '1',
     slug: 'population-zero',
     title: 'Population Zero',
     developer: 'Rockstart Games',

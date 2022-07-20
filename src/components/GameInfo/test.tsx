@@ -2,7 +2,8 @@ import { screen, render } from 'utils/test-utils'
 
 import GameInfo, { GameInfoProps } from '.'
 
-const props = {
+const props: GameInfoProps = {
+  id: '1',
   title: 'Game title',
   description: 'Game description',
   price: 210

@@ -19,7 +19,7 @@
     "build-storybook": "build-storybook",
     "postinstall": "husky install",
     "prepare": "husky install",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
+    "typecheck": "tsc --project tsconfig.json --incremental false --noEmit"
   },
   "resolutions": {
     "@types/react": "^18.0.15",

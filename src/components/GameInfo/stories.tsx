@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react'
+import { CartContextData } from 'hooks/use-cart'
 import GameInfo, { GameInfoProps } from '.'
 import mockGame from './mock'
 
@@ -13,7 +14,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<GameInfoProps> = (args) => (
+const Template: Story<GameInfoProps & CartContextData> = (args) => (
   <div
     style={{
       maxWidth: '144rem',
@@ -26,3 +27,8 @@ const Template: Story<GameInfoProps> = (args) => (
 )
 
 export const Default = Template.bind({})
+export const IsInCart = Template.bind({})
+
+IsInCart.args = {
+  isInCart: () => true
+}

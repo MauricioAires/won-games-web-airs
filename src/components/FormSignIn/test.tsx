@@ -1,10 +1,24 @@
+import { MockedProvider } from '@apollo/client/testing'
 import { screen, render } from 'utils/test-utils'
 
 import FormSignIn from '.'
 
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn
+  }))
+}))
+
+const sut = () =>
+  render(
+    <MockedProvider>
+      <FormSignIn />
+    </MockedProvider>
+  )
+
 describe('<FormSignIn />', () => {
   it('should render the form', () => {
-    render(<FormSignIn />)
+    sut()
 
     expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument()
     expect(screen.getByPlaceholderText(/password/i)).toBeInTheDocument()
@@ -17,7 +31,7 @@ describe('<FormSignIn />', () => {
   })
 
   it('should render the forgot password link', () => {
-    render(<FormSignIn />)
+    sut()
 
     expect(
       screen.getByRole('link', {
@@ -27,7 +41,7 @@ describe('<FormSignIn />', () => {
   })
 
   it('should render the text and link to sign up', () => {
-    render(<FormSignIn />)
+    sut()
 
     expect(screen.getByText(/Don't have an account\?/i)).toBeInTheDocument()
 

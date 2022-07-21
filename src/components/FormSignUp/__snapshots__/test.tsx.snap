@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormSignUp /> should render the fomr 1`] = `
+exports[`<FormSignUp /> should render the form 1`] = `
 .c4 {
   display: inline-block;
   vertical-align: middle;
@@ -154,9 +154,9 @@ exports[`<FormSignUp /> should render the fomr 1`] = `
         </div>
         <input
           class="c5"
-          name="name"
-          placeholder="Name"
-          type="name"
+          name="username"
+          placeholder="Username"
+          type="text"
           value=""
         />
       </div>
@@ -288,6 +288,7 @@ exports[`<FormSignUp /> should render the fomr 1`] = `
     </div>
     <button
       class="c6 c7"
+      type="submit"
     >
       <span>
         Sign up now

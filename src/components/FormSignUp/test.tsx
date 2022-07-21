@@ -1,10 +1,20 @@
+import { MockedProvider } from '@apollo/client/testing'
 import { screen, render } from 'utils/test-utils'
 
 import FormSignUp from '.'
 
+// sut = system unit test
+// MockedProvider => graphQL
+const sut = () =>
+  render(
+    <MockedProvider>
+      <FormSignUp />
+    </MockedProvider>
+  )
+
 describe('<FormSignUp />', () => {
-  it('should render the fomr', () => {
-    const { container } = render(<FormSignUp />)
+  it('should render the form', () => {
+    const { container } = sut()
 
     expect(screen.getByPlaceholderText(/name/i)).toBeInTheDocument()
     expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument()
@@ -21,7 +31,7 @@ describe('<FormSignUp />', () => {
   })
 
   it('should render text and link to sign in', () => {
-    render(<FormSignUp />)
+    sut()
 
     expect(
       screen.getByRole('link', {

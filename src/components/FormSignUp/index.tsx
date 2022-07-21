@@ -4,47 +4,89 @@ import Button from 'components/Button'
 import TextField from 'components/TextField'
 
 import { FormWrapper, FormLink } from 'components/Form'
+import React, { useCallback, useState } from 'react'
+import { UsersPermissionsRegisterInput } from 'graphql/generated/globalTypes'
+import { useMutation } from '@apollo/client'
+import { MUTATION_REGISTER } from 'graphql/mutations/register'
 
-const FormSignUp = () => (
-  <FormWrapper>
-    <form>
-      <TextField
-        name="name"
-        placeholder="Name"
-        type="name"
-        icon={<AccountCircleIcon />}
-      />
-      <TextField
-        name="email"
-        placeholder="Email"
-        type="email"
-        icon={<EmailIcon />}
-      />
-      <TextField
-        name="password"
-        placeholder="Password"
-        type="password"
-        icon={<LockIcon />}
-      />
-      <TextField
-        name="confirm-password"
-        placeholder="Confirm password"
-        type="password"
-        icon={<LockIcon />}
-      />
+const FormSignUp = () => {
+  const [values, setValues] = useState<UsersPermissionsRegisterInput>({
+    email: '',
+    password: '',
+    username: ''
+  })
 
-      <Button fullWidth size="large">
-        Sign up now
-      </Button>
+  const [createUser] = useMutation(MUTATION_REGISTER)
 
-      <FormLink>
-        Already have an account?{' '}
-        <Link href="/sign-in">
-          <a>Sign in</a>
-        </Link>
-      </FormLink>
-    </form>
-  </FormWrapper>
-)
+  const handleSubmit = useCallback(
+    async (event: React.FormEvent) => {
+      event.preventDefault()
+
+      createUser({
+        variables: {
+          input: {
+            username: values.username,
+            email: values.email,
+            password: values.password
+          }
+        }
+      })
+    },
+    [values, createUser]
+  )
+
+  const handleInput = useCallback((field: string, value: string) => {
+    setValues((s) => ({
+      ...s,
+      [field]: value
+    }))
+  }, [])
+
+  return (
+    <FormWrapper>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          name="username"
+          placeholder="Username"
+          onInputChange={(v) => handleInput('username', v)}
+          type="text"
+          icon={<AccountCircleIcon />}
+        />
+        <TextField
+          name="email"
+          placeholder="Email"
+          onInputChange={(v) => handleInput('email', v)}
+          type="email"
+          icon={<EmailIcon />}
+        />
+        <TextField
+          name="password"
+          placeholder="Password"
+          onInputChange={(v) => handleInput('password', v)}
+          type="password"
+          icon={<LockIcon />}
+        />
+        <TextField
+          name="confirm-password"
+          placeholder="Confirm password"
+          onInputChange={(v) => handleInput('confirmPassword', v)}
+          type="password"
+          icon={<LockIcon />}
+        />
+
+        <Button type="submit" fullWidth size="large">
+          Sign up now
+        </Button>
+
+        <FormLink>
+          Already have an account?{' '}
+          <Link href="/sign-in">
+            <a>Sign in</a>
+          </Link>
+        </FormLink>
+      </form>
+    </FormWrapper>
+  )
+}
 
 export default FormSignUp

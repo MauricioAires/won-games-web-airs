@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
-import { FormWrapper, FormLink } from 'components/Form'
+import { FormWrapper, FormLink, FormLoading } from 'components/Form'
 import TextField from 'components/TextField'
 import Button from 'components/Button'
 
@@ -12,11 +12,14 @@ import * as S from './styles'
 
 const FormSignIn = () => {
   const [values, setValues] = useState({})
+  const [loading, setLoading] = useState(false)
   const { push } = useRouter()
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent) => {
       event.preventDefault()
+
+      setLoading(true)
 
       const result = await signIn('credentials', {
         ...values,
@@ -27,6 +30,13 @@ const FormSignIn = () => {
       if (result?.url) {
         return push(result.url)
       }
+
+      /**
+       * Apenas para aparecer o loaading
+       */
+      setTimeout(() => {
+        setLoading(false)
+      }, 100)
 
       console.log('emial ou senha inválida')
     },
@@ -60,8 +70,8 @@ const FormSignIn = () => {
 
         <S.ForgotPassword href="#">Forgot your password?</S.ForgotPassword>
 
-        <Button type="submit" fullWidth size="large">
-          Sign in now
+        <Button type="submit" fullWidth size="large" disabled={loading}>
+          {!loading ? <span>Sign in now</span> : <FormLoading />}
         </Button>
 
         <FormLink>

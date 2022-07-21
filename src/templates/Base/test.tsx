@@ -2,6 +2,14 @@ import { screen, render } from 'utils/test-utils'
 
 import Base from '.'
 
+jest.mock('next-auth/react', () => ({
+  useSession: jest.fn(() => {
+    return {
+      data: null
+    }
+  })
+}))
+
 jest.mock('components/Menu', () => {
   return {
     __esModule: true,
@@ -21,13 +29,13 @@ jest.mock('components/Footer', () => {
 })
 
 describe('<Base />', () => {
+  render(
+    <Base>
+      <h1>Headings</h1>
+    </Base>
+  )
+  1
   it('should render menu, footer and children', () => {
-    render(
-      <Base>
-        <h1>Headings</h1>
-      </Base>
-    )
-
     expect(screen.getByTestId('Mock Menu')).toBeInTheDocument()
     expect(screen.getByTestId('Mock Footer')).toBeInTheDocument()
     expect(

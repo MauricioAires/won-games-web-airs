@@ -3,11 +3,12 @@ import { EmailIcon, LockIcon, AccountCircleIcon } from 'styles/icons'
 import Button from 'components/Button'
 import TextField from 'components/TextField'
 
-import { FormWrapper, FormLink } from 'components/Form'
+import { FormWrapper, FormLink, FormLoading } from 'components/Form'
 import React, { useCallback, useState } from 'react'
 import { UsersPermissionsRegisterInput } from 'graphql/generated/globalTypes'
 import { useMutation } from '@apollo/client'
 import { MUTATION_REGISTER } from 'graphql/mutations/register'
+import { signIn } from 'next-auth/react'
 
 const FormSignUp = () => {
   const [values, setValues] = useState<UsersPermissionsRegisterInput>({
@@ -16,7 +17,16 @@ const FormSignUp = () => {
     username: ''
   })
 
-  const [createUser] = useMutation(MUTATION_REGISTER)
+  const [createUser, { loading, error }] = useMutation(MUTATION_REGISTER, {
+    onError: (err) => console.log({ err }),
+    onCompleted: () => {
+      !error &&
+        signIn('credentials', {
+          ...values,
+          callbackUrl: '/'
+        })
+    }
+  })
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent) => {
@@ -74,8 +84,8 @@ const FormSignUp = () => {
           icon={<LockIcon />}
         />
 
-        <Button type="submit" fullWidth size="large">
-          Sign up now
+        <Button type="submit" fullWidth size="large" disabled={loading}>
+          {!loading ? <span>Sign up now</span> : <FormLoading />}
         </Button>
 
         <FormLink>

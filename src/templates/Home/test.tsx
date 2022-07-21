@@ -22,6 +22,16 @@ const props: HomeTemplateProps = {
   freeHighlight: highlightMock
 }
 
+/**
+ * mock de componentes
+ */
+jest.mock('templates/Base', () => ({
+  __esModule: true, // EU esqueci porque ele coloca esse esModule
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock Base">{children}</div>
+  }
+}))
+
 jest.mock('components/Showcase', () => {
   return {
     __esModule: true,

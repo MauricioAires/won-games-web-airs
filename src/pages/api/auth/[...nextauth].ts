@@ -37,19 +37,13 @@ const options: NextAuthOptions = {
     })
   ],
   callbacks: {
-    session: async (
-      session: Record<string, string>,
-      user: Record<string, string>
-    ) => {
-      session.jwt = user.jwt
-      session.id = user.id
+    async session({ session, token }) {
+      session.jwt = token.jwt
+      session.id = token.id
 
       return Promise.resolve(session)
     },
-    jwt: async (
-      token: Record<string, string>,
-      user: Record<string, string>
-    ) => {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id
         token.email = user.email

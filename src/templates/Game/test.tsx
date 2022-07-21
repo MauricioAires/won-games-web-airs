@@ -1,3 +1,4 @@
+import React from 'react'
 import { render, screen } from 'utils/test-utils'
 
 import mockGameInfo from 'components/GameInfo/mock'
@@ -11,17 +12,10 @@ import Game, { GameTemplateProps } from './'
 /**
  * mock de componentes
  */
-jest.mock('components/Footer', () => ({
+jest.mock('templates/Base', () => ({
   __esModule: true, // EU esqueci porque ele coloca esse esModule
-  default: function Mock() {
-    return <div data-testid="Mock Footer" />
-  }
-}))
-
-jest.mock('components/Menu', () => ({
-  __esModule: true, // EU esqueci porque ele coloca esse esModule
-  default: function Mock() {
-    return <div data-testid="Mock Menu" />
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock Base">{children}</div>
   }
 }))
 
@@ -76,8 +70,6 @@ describe('<Game />', () => {
   it('should render the template with componentes', () => {
     sut(props)
 
-    expect(screen.getByTestId('Mock Menu')).toBeInTheDocument()
-    expect(screen.getByTestId('Mock Footer')).toBeInTheDocument()
     expect(screen.getByTestId('Mock GameDetails')).toBeInTheDocument()
     expect(screen.getByTestId('Mock GameInfo')).toBeInTheDocument()
     expect(screen.getAllByTestId('Mock Showcase')).toHaveLength(2)

@@ -33,7 +33,7 @@ describe('<UserDropdown />', () => {
       })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('link', {
+      screen.getByRole('button', {
         name: /sign out/i
       })
     ).toBeInTheDocument()

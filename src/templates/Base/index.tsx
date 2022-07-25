@@ -10,12 +10,12 @@ export type BaseTemplateProps = {
   children: React.ReactNode
 }
 const Base = ({ children }: BaseTemplateProps) => {
-  const { data } = useSession()
+  const { data, status } = useSession()
 
   return (
     <S.Wrapper>
       <Container>
-        <Menu username={data?.user?.name} />
+        <Menu username={data?.user?.name} loading={status === 'loading'} />
       </Container>
 
       <S.Content>{children}</S.Content>

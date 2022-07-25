@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { darken } from 'polished'
+import { darken, lighten } from 'polished'
 
 import * as TextFieldStyles from 'components/TextField/styles'
 import * as ButtonStyles from 'components/Button/styles'
@@ -14,13 +14,6 @@ export const FormWrapper = styled.div`
       margin: ${theme.spacings.medium} auto ${theme.spacings.xsmall};
     }
   `}
-`
-
-export const FormLoading = styled.img.attrs(() => ({
-  src: '/img/dots.svg',
-  alt: 'waiting...'
-}))`
-  width: 4rem;
 `
 
 export const FormLink = styled.div`
@@ -41,4 +34,43 @@ export const FormLink = styled.div`
       }
     }
   `}
+`
+
+export const FormError = styled.div`
+  ${({ theme }) => css`
+    text-align: center;
+    color: ${theme.colors.red};
+    font-size: ${theme.font.sizes.small};
+    border-radius: ${theme.border.radius};
+    padding: ${theme.spacings.xsmall} 0;
+    background: ${lighten(0.3, theme.colors.red)};
+
+    svg {
+      width: 1.6rem;
+      margin-right: 0.4rem;
+    }
+  `}
+`
+
+export const FormSuccess = styled.p`
+  ${({ theme }) => css`
+    text-align: center;
+    color: ${theme.colors.secondary};
+    font-size: ${theme.font.sizes.small};
+    border-radius: ${theme.border.radius};
+    padding: ${theme.spacings.xsmall} 0;
+    background: ${lighten(0.4, theme.colors.secondary)};
+
+    svg {
+      color: ${theme.colors.secondary};
+      width: 2.4rem;
+    }
+  `}
+`
+
+export const FormLoading = styled.img.attrs(() => ({
+  src: '/img/dots.svg',
+  alt: 'waiting...'
+}))`
+  width: 4rem;
 `

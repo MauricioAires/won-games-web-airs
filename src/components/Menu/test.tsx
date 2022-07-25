@@ -1,11 +1,12 @@
 import { fireEvent, screen, render } from 'utils/test-utils'
 
-import Menu from '.'
+import Menu, { MenuProps } from '.'
+
+const sut = (props: MenuProps = {}) => render(<Menu {...props} />)
 
 describe('<Menu />', () => {
+  sut()
   it('should render the menu', () => {
-    render(<Menu />)
-
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
     expect(screen.getByRole('img', { name: /won games/i })).toBeInTheDocument()
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument()
@@ -13,7 +14,7 @@ describe('<Menu />', () => {
   })
 
   it('should handle the open/close mobile menu', () => {
-    render(<Menu />)
+    sut()
 
     // selecionar o nosso MenuFull
     const fullMenuElement = screen.getByRole('navigation', { hidden: true })
@@ -34,7 +35,7 @@ describe('<Menu />', () => {
   })
 
   it('should show register box when logged out', () => {
-    render(<Menu />)
+    sut()
 
     expect(screen.queryByText(/my profile/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/wishlist/i)).not.toBeInTheDocument()
@@ -43,11 +44,22 @@ describe('<Menu />', () => {
   })
 
   it('should show wishlight and account when logged in', () => {
-    render(<Menu username="will" />)
-
+    sut({
+      username: 'will'
+    })
     expect(screen.getAllByText(/my profile/i)).toHaveLength(2)
     expect(screen.getAllByText(/wishlist/i)).toHaveLength(2)
     expect(screen.queryByText(/sign in/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument()
+  })
+
+  it('should not show sign or dropdownUser if loading', () => {
+    sut({
+      loading: true,
+      username: 'Mauricio'
+    })
+
+    expect(screen.queryByText(/my profile/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/sign in/i)).not.toBeInTheDocument()
   })
 })

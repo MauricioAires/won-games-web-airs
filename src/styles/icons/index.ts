@@ -11,6 +11,7 @@ import { ArrowForwardIos as ArrowForwardIosIcon } from '@styled-icons/material-o
 import { Email as EmailIcon } from '@styled-icons/material-outlined/Email'
 import { Lock as LockIcon } from '@styled-icons/material-outlined/Lock'
 import { AccountCircle as AccountCircleIcon } from '@styled-icons/material-outlined/AccountCircle'
+import { ErrorOutline as ErrorOutlineIcon } from '@styled-icons/material-outlined/ErrorOutline'
 import { Windows as WindowsIcon } from '@styled-icons/fa-brands/Windows'
 import { Linux as LinuxIcon } from '@styled-icons/fa-brands/Linux'
 import { Apple as AppleIcon } from '@styled-icons/fa-brands/Apple'
@@ -22,8 +23,10 @@ import { ExitToApp as ExitToAppIcon } from 'styled-icons/material'
 import { FilterList as FilterListIcon } from 'styled-icons/material'
 import { KeyboardArrowDown as KeyboardArrowDownIcon } from '@styled-icons/material-outlined/KeyboardArrowDown'
 import { ChevronDown as ChevronDownIcon } from 'styled-icons/bootstrap'
+import { CheckCircleOutline as CheckCircleOutlineIcon } from '@styled-icons/material-outlined/CheckCircleOutline'
 
 export {
+  CheckCircleOutlineIcon,
   MenuIcon,
   ShoppingCartIcon,
   AddShoppingCartIcon,
@@ -47,5 +50,6 @@ export {
   FilterListIcon,
   KeyboardArrowDownIcon,
   ChevronDownIcon,
-  RemoveShoppingCartIcon
+  RemoveShoppingCartIcon,
+  ErrorOutlineIcon
 }

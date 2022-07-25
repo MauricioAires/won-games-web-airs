@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { createGlobalStyle, css } from 'styled-components'
 
 type GlobalStylesProps = {
@@ -55,6 +56,9 @@ const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
       font-size: 62.5%;
     }
 
+    button {
+      font-family: inherit;
+    }
     body {
       font-family: ${theme.font.family};
 
@@ -67,4 +71,4 @@ const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
 
 
 `
-export default GlobalStyles
+export default memo(GlobalStyles)

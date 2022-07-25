@@ -6,7 +6,7 @@ module.exports = withPWA({
   swcMinify: true,
   experimental: {
     // Enables the styled-components SWC transform
-    styledComponents: true
+    // styledComponents: true
   },
   pwa: {
     dest: 'public',

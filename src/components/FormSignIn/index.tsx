@@ -58,7 +58,7 @@ const FormSignIn = () => {
 
       setFormError('username or password is invalid')
     },
-    [values, push]
+    [values, query, push]
   )
 
   const handleInput = useCallback((field: string, value: string) => {

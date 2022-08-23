@@ -40,6 +40,10 @@ const options: NextAuthOptions = {
     async session({ session, token }) {
       session.jwt = token.jwt
       session.id = token.id
+
+      // Apenas duurante o desenvolviemtno
+      console.log('[ LOG - JWT ]', token.jwt)
+
       return Promise.resolve(session)
     },
     async jwt({ token, user }) {

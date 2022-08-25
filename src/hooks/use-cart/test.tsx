@@ -1,6 +1,5 @@
 import { MockedProvider } from '@apollo/client/testing'
-import { renderHook } from '@testing-library/react-hooks'
-import { act } from 'react-dom/test-utils'
+import { act, renderHook, waitFor } from 'utils/test-utils'
 import { setStorageItem } from 'utils/localStorage'
 import { CartProvider, CartProviderProps, useCart } from '.'
 import { cartItems, gamesMock } from './mock'
@@ -9,10 +8,7 @@ describe('useCart', () => {
   beforeEach(() => {
     window.localStorage.clear()
   })
-  /**
-   * Está sendo skippedn porque a versão do [@testing-library/react-hooks] não
-   * aceita o react 18
-   */
+
   it('should return items and its info if there are any in the cart', async () => {
     const wrapper = ({ children }: CartProviderProps) => (
       <MockedProvider mocks={[gamesMock]}>
@@ -22,7 +18,7 @@ describe('useCart', () => {
 
     setStorageItem('cartItems', ['1', '2'])
 
-    const { result, waitFor } = renderHook(() => useCart(), {
+    const { result } = renderHook(() => useCart(), {
       wrapper
     })
 

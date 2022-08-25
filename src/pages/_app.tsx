@@ -11,7 +11,7 @@ import { light } from 'styles/themes'
 import { useApollo } from 'utils/apollo'
 
 import GlobalStyles from 'styles/global'
-import { WishlistProvider } from 'hooks/use-wisjlist'
+import { WishlistProvider } from 'hooks/use-wishlist'
 
 function App({ Component, pageProps }: AppProps) {
   const client = useApollo(pageProps.initialApolloState)

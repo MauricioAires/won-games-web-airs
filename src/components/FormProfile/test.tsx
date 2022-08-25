@@ -1,12 +1,12 @@
 import { screen, render } from 'utils/test-utils'
 
-import FormProfile from '.'
+import FormProfile, { FormProfileProps } from '.'
 
-const sut = () => render(<FormProfile />)
+const sut = (props: FormProfileProps) => render(<FormProfile {...props} />)
 
 describe('<FormProfile />', () => {
   it('should render the profile form', () => {
-    sut()
+    sut({} as FormProfileProps)
 
     expect(
       screen.getByRole('heading', {
@@ -25,12 +25,6 @@ describe('<FormProfile />', () => {
         name: /e-mail/i
       })
     ).toBeInTheDocument()
-
-    expect(
-      screen.getByPlaceholderText(/type your password/i)
-    ).toBeInTheDocument()
-
-    expect(screen.getByPlaceholderText(/new password/i)).toBeInTheDocument()
 
     expect(screen.getByRole('button', { name: /save/i })).toBeInTheDocument()
   })

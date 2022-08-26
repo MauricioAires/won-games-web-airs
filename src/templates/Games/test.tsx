@@ -1,3 +1,5 @@
+import 'session.mock'
+
 import React from 'react'
 import apolloCache from 'utils/apolloCache'
 import userEvent from '@testing-library/user-event'

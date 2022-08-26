@@ -16,22 +16,21 @@ export type WishlistContextData = {
   items: GameCardProps[]
   isInWishlist: (id: string) => boolean
   addToWishlist: (id: string) => void
-  removeFromWiihslist: (id: string) => void
+  removeFromWihslist: (id: string) => void
   loading: boolean
 }
 
-/**
- * Formato de test utilizado pela Rocksetat
- */
-export const WishlistDefaultValues: WishlistContextData =
-  {} as WishlistContextData
-// export const WishlistDefaultValues: WishlistContextData = {
-//   items: [],
-//   isInWishlist: () => true,
-//   addToWishlist: () => null,
-//   removeFromWiihslist: () => null,
-//   loading: true
-// }
+// Formato de test utilizado pela Rocksetat ( Não é compativel com testtes)
+// pois quando vai fazer testes precisa dos valores padrão
+// export const WishlistDefaultValues: WishlistContextData =
+//   {} as WishlistContextData
+export const WishlistDefaultValues: WishlistContextData = {
+  items: [],
+  isInWishlist: () => false,
+  addToWishlist: () => null,
+  removeFromWihslist: () => null,
+  loading: false
+}
 
 export const WishlistContext = createContext<WishlistContextData>(
   WishlistDefaultValues
@@ -43,7 +42,7 @@ export type WishlistProviderProps = {
 
 const WishlistProvider = ({ children }: WishlistProviderProps) => {
   const { data: session } = useSession()
-  const [wishlistId, setWishlistId] = useState<string | null>(null)
+  const [wishlistId, setWishlistId] = useState<number | string | null>(null)
   const [wishlistItems, setWihslistItems] = useState<
     QueryWishlist_wishlists_games[]
   >([])
@@ -78,7 +77,7 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
     setWihslistItems(data?.wishlists[0]?.games || [])
 
     // armazenar o id da wishlist carregada
-    setWishlistId(data?.wishlists[0].id || null)
+    setWishlistId(data?.wishlists[0]?.id || null)
   }, [data])
 
   const wishlistIds = useMemo(
@@ -108,17 +107,17 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
       variables: {
         input: {
           where: {
-            id: wishlistId,
-            data: {
-              games: [...wishlistIds, id]
-            }
+            id: wishlistId
+          },
+          data: {
+            games: [...wishlistIds, id]
           }
         }
       }
     })
   }
 
-  const removeFromWiihslist = (id: string) => {
+  const removeFromWihslist = (id: string) => {
     return updateList({
       variables: {
         input: {
@@ -139,7 +138,7 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
         items: gamesMapper(wishlistItems),
         isInWishlist,
         addToWishlist,
-        removeFromWiihslist,
+        removeFromWihslist,
         loading: loadingQuery || loadingCreate || loadingUpdate
       }}
     >

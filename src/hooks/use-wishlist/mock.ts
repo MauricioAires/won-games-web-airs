@@ -82,10 +82,10 @@ export const updateWishlistMock = {
     variables: {
       input: {
         where: {
-          id: 1,
-          data: {
-            games: ['1', '2', '3']
-          }
+          id: 1
+        },
+        data: {
+          games: ['1', '2', '3']
         }
       }
     }

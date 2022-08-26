@@ -17,21 +17,21 @@ import { light } from 'styles/themes'
 
 export type CustomRenderProps = {
   cartProviderProps?: CartContextData
-  wishlistProviderPops?: WishlistContextData
+  wishlistProviderProps?: WishlistContextData
 } & Omit<RenderOptions, 'queries'>
 
 const customRender = (
   ui: ReactElement,
   {
     cartProviderProps = CartContextDefaultValue,
-    wishlistProviderPops = WishlistDefaultValues,
+    wishlistProviderProps = WishlistDefaultValues,
     ...renderOptions
   }: CustomRenderProps = {}
 ) =>
   render(
     <ThemeProvider theme={light}>
       <CartContext.Provider value={cartProviderProps}>
-        <WishlistContext.Provider value={wishlistProviderPops}>
+        <WishlistContext.Provider value={wishlistProviderProps}>
           {ui}
         </WishlistContext.Provider>
       </CartContext.Provider>

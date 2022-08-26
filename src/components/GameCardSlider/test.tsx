@@ -1,4 +1,6 @@
 import 'match-media-mock'
+import 'session.mock'
+
 import { screen, render } from 'utils/test-utils'
 
 import mockGameSlider from './mock'

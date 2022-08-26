@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const QUERY_PROFILE_ME = gql`
-  query queryProfileMe {
-    me {
+  query queryProfileMe($identifier: ID!) {
+    user(id: $identifier) {
       id
       username
       email

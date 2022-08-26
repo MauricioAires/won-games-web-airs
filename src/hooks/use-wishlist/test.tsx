@@ -1,3 +1,5 @@
+import 'session.mock'
+
 import { renderHook, waitFor } from 'utils/test-utils'
 import { MockedProvider } from '@apollo/client/testing'
 import { useWishlist, WishlistProvider } from '.'
@@ -9,19 +11,6 @@ import {
   wishlistMock
 } from './mock'
 import { act } from 'react-dom/test-utils'
-
-jest.mock('next-auth/react', () => ({
-  useSession: jest.fn(() => {
-    return {
-      data: {
-        jwt: '123',
-        user: {
-          email: 'loren@gmail.com'
-        }
-      }
-    }
-  })
-}))
 
 describe('useWishlist', () => {
   it('should check if the game is in the wishlist', async () => {
@@ -119,7 +108,7 @@ describe('useWishlist', () => {
     })
 
     // adicionat novo item
-    await act(() => {
+    await waitFor(() => {
       result.current.addToWishlist('3')
     })
 
@@ -151,7 +140,7 @@ describe('useWishlist', () => {
 
     // adicionat novo item
     await act(() => {
-      result.current.removeFromWiihslist('1')
+      result.current.removeFromWihslist('1')
     })
 
     await waitFor(() => {

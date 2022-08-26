@@ -1,10 +1,13 @@
+import 'session.mock'
+
 import React from 'react'
-import { render, screen } from 'utils/test-utils'
+import { CustomRenderProps, render, screen } from 'utils/test-utils'
 
 import mockGames from 'components/GameCardSlider/mock'
 import mockHighlight from 'components/Highlight/mock'
 
 import Wishlist, { WishlistTemplateProps } from '.'
+import { WishlistContextData, WishlistDefaultValues } from 'hooks/use-wishlist'
 
 /**
  * mock de componentes
@@ -31,12 +34,19 @@ jest.mock('components/Menu', () => ({
 }))
 
 const props: WishlistTemplateProps = {
-  games: mockGames,
   recommendedGames: mockGames,
   recommendedHighlight: mockHighlight
 }
 
-const sut = (props: WishlistTemplateProps) => render(<Wishlist {...props} />)
+const wishlistProviderProps: WishlistContextData = {
+  ...WishlistDefaultValues,
+  items: [mockGames[0]]
+}
+
+const sut = (
+  props: WishlistTemplateProps,
+  renderOptions: CustomRenderProps = { wishlistProviderProps }
+) => render(<Wishlist {...props} />, renderOptions)
 
 describe('<Wishlist />', () => {
   it('should render correctly', () => {
@@ -49,14 +59,21 @@ describe('<Wishlist />', () => {
       })
     ).toBeInTheDocument()
 
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(6)
+    expect(screen.getByText(/population zero/i)).toBeInTheDocument()
   })
 
   it('should render empty when there are no games', () => {
-    sut({
-      ...props,
-      games: undefined
-    })
+    sut(
+      {
+        ...props
+      },
+      {
+        wishlistProviderProps: {
+          ...wishlistProviderProps,
+          items: []
+        }
+      }
+    )
 
     expect(screen.queryByText(/population zero/i)).not.toBeInTheDocument()
     expect(

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import {
   AccountCircleIcon,
   FormatListBulletedIcon,
-  CreditCardIcon,
   ExitToAppIcon
 } from 'styles/icons'
 
@@ -19,13 +18,6 @@ const ProfileMenu = ({ activeLink }: ProfileMenuProps) => (
       <S.Link isActive={activeLink === '/profile/me'} title="My profile">
         <AccountCircleIcon size={24} />
         <span>My profile</span>
-      </S.Link>
-    </Link>
-
-    <Link href="/profile/cards" passHref>
-      <S.Link isActive={activeLink === '/profile/cards'} title="My cards ">
-        <CreditCardIcon size={24} />
-        <span>My Cards</span>
       </S.Link>
     </Link>
 

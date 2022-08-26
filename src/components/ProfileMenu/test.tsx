@@ -13,11 +13,7 @@ describe('<ProfileMenu />', () => {
         name: /my profile/i
       })
     ).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', {
-        name: /my cards/i
-      })
-    ).toBeInTheDocument()
+
     expect(
       screen.getByRole('link', {
         name: /my orders/i
@@ -32,12 +28,12 @@ describe('<ProfileMenu />', () => {
 
   it('should render the menu with an active link defined', () => {
     sut({
-      activeLink: '/profile/cards'
+      activeLink: '/profile/orders'
     })
 
     expect(
       screen.getByRole('link', {
-        name: /my cards/i
+        name: /my orders/i
       })
     ).toHaveStyle({
       background: '#F231A5',

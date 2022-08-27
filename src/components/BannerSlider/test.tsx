@@ -1,4 +1,4 @@
-import 'match-media-mock'
+import 'match-media.mock'
 import { screen, render } from 'utils/test-utils'
 
 import BannerSlider from '.'

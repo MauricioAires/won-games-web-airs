@@ -1,13 +1,14 @@
+import Image from 'next/image'
+
 import Base from 'templates/Base'
+
 import Showcase from 'components/Showcase'
 import TextContent from 'components/TextContent'
 import Gallery, { GalleryImageProps } from 'components/Gallery'
 import GameDetails, { GameDetailsProps } from 'components/GameDetails'
 import GameInfo, { GameInfoProps } from 'components/GameInfo'
-
 import { Divider } from 'components/Divider'
 import { GameCardProps } from 'components/GameCard'
-
 import { HighlightProps } from 'components/Highlight'
 
 import * as S from './styles'
@@ -38,7 +39,14 @@ const Game = ({
   recommendedGames
 }: GameTemplateProps) => (
   <Base>
-    <S.Cover src={cover} role="image" aria-label="cover" />
+    <S.CoverWrapper>
+      <Image
+        src={cover}
+        aria-label={gameInfo.title}
+        layout="fill"
+        objectFit="cover"
+      />
+    </S.CoverWrapper>
 
     <S.Main>
       <S.SectionGameInfo>

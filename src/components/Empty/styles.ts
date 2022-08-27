@@ -7,8 +7,10 @@ export const Wrapper = styled.main`
   text-align: center;
 `
 
-export const Image = styled.img`
+export const ImageWrapper = styled.div`
   max-width: 100%;
+
+  position: relative;
 `
 
 export const Title = styled.h2`

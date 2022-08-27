@@ -1,4 +1,4 @@
-import 'match-media-mock'
+import 'match-media.mock'
 import 'session.mock'
 
 import React from 'react'

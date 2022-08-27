@@ -1,4 +1,4 @@
-import 'match-media-mock'
+import 'match-media.mock'
 import { render, screen } from 'utils/test-utils'
 
 import Slider from '.'

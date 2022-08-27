@@ -1,4 +1,4 @@
-import 'match-media-mock'
+import 'match-media.mock'
 import mockGallery from './mock'
 import Gallery, { GalleryProps } from '.'
 import { fireEvent, screen, render } from 'utils/test-utils'

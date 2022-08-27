@@ -39,12 +39,7 @@ export const ImageBox = styled.div`
     margin-right: 1.2rem;
     width: 9.6rem;
     height: 5.6rem;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    position: relative;
 
     ${media.greaterThan('medium')`
       margin-right: ${theme.spacings.xsmall};

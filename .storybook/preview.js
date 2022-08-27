@@ -1,3 +1,5 @@
+import '../.jest/next-image.mock.tsx'
+
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { ThemeProvider } from 'styled-components'
 import { CartContext, CartContextDefaultValue } from 'hooks/use-cart'

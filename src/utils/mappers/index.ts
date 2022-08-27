@@ -31,7 +31,7 @@ export const gamesMapper = (
         title: game.name,
         slug: game.slug,
         developer: game.developers[0].name,
-        img: game.cover?.url || '/img/games/cyberpunk-1.jpg',
+        img: game.cover?.url || '/img/games/game-default.webp',
         price: game.price
       }))
     : []
@@ -57,7 +57,7 @@ export const cartMapper = (games: QueryGames_games[] | undefined) => {
   return games
     ? games.map((game) => ({
         id: game.id,
-        img: game.cover?.url,
+        img: game.cover?.url || '/img/games/game-default.webp',
         price: formatPrice(game.price),
         title: game.name
       }))

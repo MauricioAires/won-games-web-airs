@@ -24,8 +24,12 @@ import { FilterList as FilterListIcon } from 'styled-icons/material'
 import { KeyboardArrowDown as KeyboardArrowDownIcon } from '@styled-icons/material-outlined/KeyboardArrowDown'
 import { ChevronDown as ChevronDownIcon } from 'styled-icons/bootstrap'
 import { CheckCircleOutline as CheckCircleOutlineIcon } from '@styled-icons/material-outlined/CheckCircleOutline'
+import { ErrorCircle as ErrorCircleIcon } from '@styled-icons/fluentui-system-filled/ErrorCircle'
+import { Done as DoneIcon } from '@styled-icons/material-outlined/Done'
 
 export {
+  DoneIcon,
+  ErrorCircleIcon,
   CheckCircleOutlineIcon,
   MenuIcon,
   ShoppingCartIcon,

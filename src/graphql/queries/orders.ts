@@ -3,7 +3,7 @@ import { GameFragment } from 'graphql/fragments'
 
 export const QUERY_ORDERS = gql`
   query QueryOrders($identifier: ID!) {
-    orders(where: { user: { id: $indentifier } }) {
+    orders(where: { user: { id: $identifier } }) {
       id
       created_at
       card_brand

@@ -18,10 +18,13 @@ export const CoverWrapper = styled.div`
   left: 0;
   height: 39.5rem;
   opacity: 0.4;
-  max-height: 100vh;
+  img {
+    object-fit: cover;
+    object-position: top center;
+  }
   ${media.greaterThan('medium')`
-      height: 70rem;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+    height: 70rem;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
     `}
 `
 

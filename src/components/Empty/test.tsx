@@ -15,7 +15,7 @@ describe('<Empty />', () => {
     const { container } = sut(props)
 
     expect(
-      screen.getByRole('image', {
+      screen.getByRole('img', {
         name: /a gamer in a couch playing videogame/i
       })
     ).toBeInTheDocument()

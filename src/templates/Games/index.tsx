@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 import { parseQueryStringToWhere, parseQueryStringToFilter } from 'utils/filter'
 import { ParsedUrlQueryInput } from 'querystring'
 import { useCallback, useMemo } from 'react'
+import Image from 'next/image'
 
 export type GamesTemplateProps = {
   filterItems: ItemProps[]
@@ -97,9 +98,11 @@ const Games = ({ filterItems }: GamesTemplateProps) => {
                 {hasMoreGames && (
                   <S.ShowMore>
                     {loading ? (
-                      <S.ShowMoreLoading
+                      <Image
                         src="/img/dots.svg"
                         alt="loading more games"
+                        width={40}
+                        height={10}
                       />
                     ) : (
                       <S.ShowMoreButton role="button" onClick={handleShowMore}>

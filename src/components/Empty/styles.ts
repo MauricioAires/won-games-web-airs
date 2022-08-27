@@ -5,12 +5,10 @@ export const Wrapper = styled.main`
   flex-direction: column;
   align-items: center;
   text-align: center;
-`
 
-export const ImageWrapper = styled.div`
-  max-width: 100%;
-
-  position: relative;
+  img {
+    object-fit: cover;
+  }
 `
 
 export const Title = styled.h2`

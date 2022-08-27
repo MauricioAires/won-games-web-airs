@@ -5,6 +5,7 @@ import Slider, { SliderSettings } from 'components/Slider'
 import { ArrowBackIosIcon, ArrowForwardIosIcon, CloseIcon } from 'styles/icons'
 
 import * as S from './styles'
+import Image from 'next/image'
 
 export type GalleryImageProps = {
   src: string
@@ -78,8 +79,9 @@ const Gallery = ({ items }: GalleryProps) => {
     <S.Wrapper>
       <Slider ref={slider} settings={settings}>
         {items.map((item, index) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
+            width={295}
+            height={165}
             role="button"
             key={`thumb-${index}`}
             src={item.src}
@@ -107,8 +109,9 @@ const Gallery = ({ items }: GalleryProps) => {
         <S.Content>
           <Slider ref={slider} settings={modalSettings}>
             {items.map((item, index) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <Image
+                width={1200}
+                height={675}
                 key={`gallery-${index}`}
                 src={item.src}
                 loading="lazy"

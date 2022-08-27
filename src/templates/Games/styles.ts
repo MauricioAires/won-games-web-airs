@@ -33,6 +33,3 @@ export const ShowMoreButton = styled.div`
     }
   `}
 `
-export const ShowMoreLoading = styled.img`
-  width: 4rem;
-`

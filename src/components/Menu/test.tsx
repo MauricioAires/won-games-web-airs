@@ -2,6 +2,16 @@ import { fireEvent, screen, render } from 'utils/test-utils'
 
 import Menu, { MenuProps } from '.'
 
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    push: jest.fn()
+  })
+}))
+
+jest.mock('next-auth/react', () => ({
+  signOut: () => jest.fn()
+}))
+
 const sut = (props: MenuProps = {}) => render(<Menu {...props} />)
 
 describe('<Menu />', () => {

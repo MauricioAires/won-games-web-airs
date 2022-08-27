@@ -38,8 +38,8 @@ const options: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      session.jwt = token.jwt
-      session.id = token.id
+      session.jwt = token.jwt as string
+      session.id = token.id as string
 
       // Apenas duurante o desenvolviemtno
       console.log('[ LOG - JWT ]', token.jwt)
@@ -50,7 +50,7 @@ const options: NextAuthOptions = {
       if (user) {
         token.id = user.id
         token.email = user.email
-        token.name = user.username
+        token.name = user.username as string
         token.jwt = user.jwt
       }
 

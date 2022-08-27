@@ -157,4 +157,4 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
   )
 }
 
-export { PaymentForm }
+export default PaymentForm

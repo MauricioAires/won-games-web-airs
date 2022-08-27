@@ -1,4 +1,6 @@
 import 'match-media-mock'
+import 'session.mock'
+
 import React from 'react'
 import { render, screen } from 'utils/test-utils'
 
@@ -43,6 +45,14 @@ jest.mock('components/Empty', () => ({
 }))
 
 const props: CartTemplateProps = {
+  session: {
+    expires: '123123',
+    jwt: '123',
+    id: '123',
+    user: {
+      email: 'loren@gmail.com'
+    }
+  },
   recommendTitle: 'You may like these games',
   recommendedGames: mockGames,
   recommendedHighlight: mockHighlight

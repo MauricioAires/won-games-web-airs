@@ -1,13 +1,13 @@
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
-import { Session } from 'next-auth'
+import { Session } from 'next-auth/core/types'
 
 import Base from 'templates/Base'
 
 import Showcase from 'components/Showcase'
 import Heading from 'components/Heading'
 import CartList, { CartListProps } from 'components/CartList'
-import { PaymentForm } from 'components/PaymentForm'
+import PaymentForm from 'components/PaymentForm'
 import { Container } from 'components/Container'
 import { Divider } from 'components/Divider'
 import { GameCardProps } from 'components/GameCard'

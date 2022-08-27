@@ -22,6 +22,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await protectedRouter(context)
   const apolloCliente = initializeApollo(null, session)
 
+  if (!session) {
+    return {
+      props: {}
+    }
+  }
+
   const { data } = await apolloCliente.query<
     queryProfileMe,
     queryProfileMeVariables

@@ -24,6 +24,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const apolloClient = initializeApollo(null, session)
 
+  if (!session) {
+    return {
+      props: {}
+    }
+  }
+
   // realizar a requisiççao da wishlist apenas para adiconar os items ao cache do apollo
   await apolloClient.query<QueryWishlist, QueryWishlistVariables>({
     query: QUERY_WISHLIST,
@@ -39,7 +45,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
       session,
-      initialApolloState: apolloClient.cache.extract,
+      initialApolloState: apolloClient.cache.extract(),
       recommendeTitle: data.recommended?.section?.title,
       recommendedGames: gamesMapper(data.recommended?.section?.games),
       recommendedHighlight: highlightMapper(

@@ -16,7 +16,7 @@ import { FormLoading } from 'components/Form'
 
 import * as S from './styles'
 
-type PaymentFormProps = {
+export type PaymentFormProps = {
   session: Session
 }
 
@@ -37,7 +37,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
       if (items.length) {
         const data = await createPaymentIntent({
           items,
-          token: session?.jwt as string
+          token: session.jwt
         })
 
         if (data.freeGames) {

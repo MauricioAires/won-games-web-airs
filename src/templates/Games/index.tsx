@@ -13,6 +13,7 @@ import { parseQueryStringToWhere, parseQueryStringToFilter } from 'utils/filter'
 import { ParsedUrlQueryInput } from 'querystring'
 import { useCallback, useMemo } from 'react'
 import Image from 'next/image'
+import { getImageUrl } from 'utils/getImageUrl'
 
 export type GamesTemplateProps = {
   filterItems: ItemProps[]
@@ -89,7 +90,11 @@ const Games = ({ filterItems }: GamesTemplateProps) => {
                       title={game.name}
                       slug={game.slug}
                       developer={game.developers[0].name}
-                      img={game.cover?.url || '/img/sgames/cyberpunk-1.jpg'}
+                      img={
+                        getImageUrl(
+                          game.cover?.url || '/img/sgames/cyberpunk-1.jpg'
+                        ) as string
+                      }
                       price={game.price}
                     />
                   ))}

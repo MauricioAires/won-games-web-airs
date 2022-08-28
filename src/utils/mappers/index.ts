@@ -1,3 +1,4 @@
+import { getImageUrl } from 'utils/getImageUrl'
 import { QueryWishlist_wishlists_games } from 'graphql/generated/QueryWishlist'
 import formatPrice from 'utils/format-price'
 import { QueryGames_games } from 'graphql/generated/QueryGames'
@@ -9,7 +10,7 @@ import { QueryOrders_orders } from 'graphql/generated/QueryOrders'
 
 export const bannerMapper = (banners: QueryHome_banners[]) => {
   return banners.map((banner) => ({
-    img: banner.image?.url || null,
+    img: getImageUrl(banner.image?.url || undefined),
     title: banner.title,
     subtitle: banner.subtitle,
     buttonLabel: banner.button?.label || null,
@@ -31,7 +32,7 @@ export const gamesMapper = (
         title: game.name,
         slug: game.slug,
         developer: game.developers[0].name,
-        img: game.cover?.url || '/img/games/game-default.webp',
+        img: getImageUrl(game.cover?.url || '/img/games/game-default.webp'),
         price: game.price
       }))
     : []
@@ -44,8 +45,8 @@ export const highlightMapper = (
     highlight && {
       title: highlight.title,
       subtitle: highlight.subtitle,
-      backgroundImage: highlight.background?.url,
-      floatImage: highlight.floatImage?.url,
+      backgroundImage: getImageUrl(highlight.background?.url),
+      floatImage: getImageUrl(highlight.floatImage?.url),
       buttonLabel: highlight.buttonLabel,
       buttonLink: highlight.buttonLink,
       alignment: highlight.alignment
@@ -57,7 +58,7 @@ export const cartMapper = (games: QueryGames_games[] | undefined) => {
   return games
     ? games.map((game) => ({
         id: game.id,
-        img: game.cover?.url || '/img/games/game-default.webp',
+        img: getImageUrl(game.cover?.url || '/img/games/game-default.webp'),
         price: formatPrice(game.price),
         title: game.name
       }))
@@ -71,7 +72,11 @@ export const ordersMapper = (orders: QueryOrders_orders[]) => {
           id: order.id,
           paymentInfo: {
             flag: order.card_brand,
-            img: order.card_brand ? `/img/cards/${order.card_brand}.png` : null,
+            img: getImageUrl(
+              order.card_brand
+                ? `/img/cards/${order.card_brand}.png`
+                : undefined
+            ),
             number: order.card_last4
               ? `**** **** **** ${order.card_last4}`
               : 'Free Game',
@@ -86,7 +91,7 @@ export const ordersMapper = (orders: QueryOrders_orders[]) => {
             title: game.name,
             downloadLink:
               'https://wongames.com/game/download/yuYT56Tgh431LkjhNBgdf',
-            img: game.cover ? game.cover?.url : null,
+            img: getImageUrl(game.cover ? game.cover?.url : undefined),
             price: formatPrice(game.price)
           }))
         }

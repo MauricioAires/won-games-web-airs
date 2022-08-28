@@ -18,14 +18,9 @@ const CartButton = ({
 
   return (
     <Button
-      icon={
-        isInCart(id) ? (
-          <RemoveShoppingCartIcon aria-label="remove from cart" />
-        ) : (
-          <AddShoppingCartIcon aria-label="add to cart" />
-        )
-      }
+      icon={isInCart(id) ? <RemoveShoppingCartIcon /> : <AddShoppingCartIcon />}
       size={size}
+      aria-label={ButtonText}
       onClick={() => (isInCart(id) ? removeFromCart(id) : addToCart(id))}
     >
       {hasText && ButtonText}

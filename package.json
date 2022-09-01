@@ -1,5 +1,5 @@
 {
-  "name": "react-avancado-boilerplate",
+  "name": "won-games-airs",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -19,7 +19,8 @@
     "build-storybook": "build-storybook",
     "postinstall": "husky install",
     "prepare": "husky install",
-    "typecheck": "tsc --project tsconfig.json --incremental false --noEmit"
+    "typecheck": "tsc --project tsconfig.json --incremental false --noEmit",
+    "cy:open": "cypress open"
   },
   "resolutions": {
     "@types/react": "^18.0.15",
@@ -72,6 +73,7 @@
     "@typescript-eslint/eslint-plugin": "5.30.5",
     "@typescript-eslint/parser": "5.30.7",
     "apollo": "^2.34.0",
+    "cypress": "^10.7.0",
     "eslint": "^8.20.0",
     "eslint-config-next": "^12.2.2",
     "eslint-config-prettier": "^8.5.0",

@@ -16,12 +16,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "cypress"],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "jest.config.js",
-    "node_modules/node-fetch/src/index.js"
+    "node_modules/node-fetch/src/index.js",
+    "cypress/tsconfig.json"
   ]
 }

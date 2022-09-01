@@ -36,4 +36,6 @@
 //   }
 // }
 
-Cypress.Commands.add('google', () => cy.visit('https://google.com'))
+// Importar os comando do @testing-library/cypress sobreponto
+// os comandos padrão
+import '@testing-library/cypress/add-commands'

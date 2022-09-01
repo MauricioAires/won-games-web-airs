@@ -1,12 +1,6 @@
 /// <reference types="cypress" />
 
 declare namespace Cypress {
-  interface Chainable {
-    /**
-     * Custom command to visit google page
-     *
-     * @example cy.google()
-     */
-    google(): Chainable<AUTWindow>
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface Chainable {}
 }

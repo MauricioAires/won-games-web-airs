@@ -33,7 +33,7 @@ const GameDetails = ({
   }
 
   return (
-    <S.Wrapper>
+    <S.Wrapper data-cy="game-details">
       <MediaMatch greaterThan="small">
         <Heading lineColor="secondary" lineLeft>
           Game detail

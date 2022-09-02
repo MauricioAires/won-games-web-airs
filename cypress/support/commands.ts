@@ -1,41 +1,63 @@
 /// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="./index.d.ts" />
+/// <reference types="@testing-library/cypress" />
 
 // Importar os comando do @testing-library/cypress sobreponto
 // os comandos padrão
 import '@testing-library/cypress/add-commands'
+
+Cypress.Commands.add('getByDataCy', (selector, ...args) => {
+  return cy.get(`[data-cy="${selector}"]`, ...args)
+})
+
+Cypress.Commands.add('shouldRenderBanner', () => {
+  cy.get('.slick-slider').within(() => {
+    // localizar primeiro slider
+    cy.findByRole('heading', {
+      name: /Cyberpunk 2077/i
+    })
+    cy.findByRole('link', {
+      name: /buy now/i
+    })
+
+    // ir para o segundo slider
+    cy.get('.slick-dots :nth-child(2) > button').click()
+    cy.wait(500)
+    cy.findByRole('heading', {
+      name: /horizon zero dawn/i
+    })
+    cy.findByRole('link', {
+      name: /buy now/i
+    })
+
+    // ir para o terceiro slider
+    cy.get('.slick-dots > :nth-child(3) > button').click()
+    cy.wait(500)
+    cy.findByRole('heading', {
+      name: /huge promotion/i
+    })
+    cy.findByRole('link', {
+      name: /Browse games/i
+    })
+  })
+})
+
+Cypress.Commands.add('shouldRenderShowcase', ({ name, highlight = false }) => {
+  cy.getByDataCy(name).within(() => {
+    cy.findByRole('heading', {
+      name
+    }).should('exist')
+
+    // Verificar se o sliter possui no minimo 1 card
+    cy.getByDataCy('game-card').should('have.length.gt', 0)
+
+    cy.getByDataCy('highlight').should(highlight ? 'exist' : 'not.exist')
+
+    if (highlight) {
+      cy.getByDataCy('highlight').within(() => {
+        cy.findByRole('link').should('have.attr', 'href')
+      })
+    }
+  })
+})

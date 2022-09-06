@@ -22,6 +22,16 @@ declare namespace Cypress {
      * @example cy.getFields([{label: 'foo', name: 'foo' }])
      */
     getFields(fields: FieldAttributes[]): Chainable<Element>
+    /**
+     * Custom command to if check value is greater than preice
+     * @example cy.shouldBeGreaterThan(100)
+     */
+    shouldBeGreaterThan(value: number): Chainable<Element>
+    /**
+     * Custom command to check if value is less than price
+     * @example cy.shouldBeLessThan(50)
+     */
+    shouldBeLessThan(value: number): Chainable<Element>
 
     /**
      * Custom command to check banner in page

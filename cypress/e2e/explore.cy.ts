@@ -64,7 +64,8 @@ describe('Explore page', () => {
     cy.getByDataCy('game-card')
       .first()
       .within(() => {
-        cy.findByText('$0.00').should('not.exist')
+        // Verificar se o preço do jogo é maiot que zero
+        cy.shouldBeGreaterThan(12)
       })
   })
 })

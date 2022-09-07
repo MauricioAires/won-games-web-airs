@@ -1,5 +1,11 @@
 /// <reference types="cypress" />
 
+type User = {
+  username: string
+  email: string
+  password: string
+}
+
 type ShowcasAttributes = {
   name: string
   highlight?: boolean
@@ -22,6 +28,16 @@ declare namespace Cypress {
      * @example cy.getFields([{label: 'foo', name: 'foo' }])
      */
     getFields(fields: FieldAttributes[]): Chainable<Element>
+    /**
+     * Custom command to sign up.
+     * @example cy.signUp([{username: 'aila', email: 'aila@gmail.com', password: '123 }])
+     */
+    signUp(user: User): Chainable<Element>
+    /**
+     * Custom command to sign in.
+     * @example cy.signUp([ email: 'aila@gmail.com', password: '123 }])
+     */
+    signIn(email?: string, password?: string): Chainable<Element>
     /**
      * Custom command to if check value is greater than preice
      * @example cy.shouldBeGreaterThan(100)

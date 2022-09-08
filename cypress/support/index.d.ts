@@ -29,6 +29,16 @@ declare namespace Cypress {
      */
     getFields(fields: FieldAttributes[]): Chainable<Element>
     /**
+     * Custom command to add game to cart by index
+     * @example cy.addToCartByIndex(1)
+     */
+    addToCartByIndex(index: number): Chainable<Element>
+    /**
+     * Custom command to remove from cart by index
+     * @example cy.addToCartByIndex(1)
+     */
+    removeFromCartByIndex(index: number): Chainable<Element>
+    /**
      * Custom command to sign up.
      * @example cy.signUp([{username: 'aila', email: 'aila@gmail.com', password: '123 }])
      */

@@ -88,6 +88,22 @@ Cypress.Commands.add('shouldRenderBanner', () => {
   })
 })
 
+Cypress.Commands.add('removeFromCartByIndex', (index) => {
+  cy.getByDataCy('game-card')
+    .eq(index)
+    .within(() => {
+      cy.findByRole('button', { name: /remove from cart/i }).click()
+    })
+})
+
+Cypress.Commands.add('addToCartByIndex', (index) => {
+  cy.getByDataCy('game-card')
+    .eq(index)
+    .within(() => {
+      cy.findByRole('button', { name: /Add to cart/i }).click()
+    })
+})
+
 Cypress.Commands.add('shouldRenderShowcase', ({ name, highlight = false }) => {
   cy.getByDataCy(name).within(() => {
     cy.findByRole('heading', {

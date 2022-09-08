@@ -6,6 +6,7 @@
 // Importar os comando do @testing-library/cypress sobreponto
 // os comandos padrão
 import '@testing-library/cypress/add-commands'
+import 'cypress-plugin-stripe-elements'
 
 Cypress.Commands.add('getByDataCy', (selector, ...args) => {
   return cy.get(`[data-cy="${selector}"]`, ...args)

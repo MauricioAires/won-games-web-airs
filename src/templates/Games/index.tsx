@@ -24,7 +24,7 @@ const Games = ({ filterItems }: GamesTemplateProps) => {
   const { data, loading, fetchMore } = useQueryGame({
     notifyOnNetworkStatusChange: true,
     variables: {
-      limit: 15,
+      limit: parseInt(process.env.NEXT_PUBLIC_GAMES_LIMIT!),
       where: parseQueryStringToWhere({
         queryString: query,
         filterItems
@@ -59,7 +59,7 @@ const Games = ({ filterItems }: GamesTemplateProps) => {
   const handleShowMore = () => {
     fetchMore({
       variables: {
-        limit: 15,
+        limit: 9,
         start: data?.games.length
       }
     })

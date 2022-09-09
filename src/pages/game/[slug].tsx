@@ -55,7 +55,7 @@ export async function getStaticPaths() {
   const { data } = await apolloClient.query<QueryGames, QueryGamesVariables>({
     query: QUERY_GAMES,
     variables: {
-      limit: 15
+      limit: parseInt(process.env.NEXT_PUBLIC_GAMES_LIMIT!)
     }
   })
 

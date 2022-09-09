@@ -4,7 +4,10 @@ import { QUERY_GAMES } from 'graphql/queries/games'
 export const mockNoGames = {
   request: {
     query: QUERY_GAMES,
-    variables: { limit: 15, where: {} }
+    variables: {
+      limit: parseInt(process.env.NEXT_PUBLIC_GAMES_LIMIT!),
+      where: {}
+    }
   },
   result: {
     data: {
@@ -20,7 +23,10 @@ export const mockNoGames = {
 export const mockGames: MockedResponse = {
   request: {
     query: QUERY_GAMES,
-    variables: { limit: 15, where: {} }
+    variables: {
+      limit: parseInt(process.env.NEXT_PUBLIC_GAMES_LIMIT!),
+      where: {}
+    }
   },
   result: {
     data: {
@@ -48,7 +54,11 @@ export const mockGames: MockedResponse = {
 export const mockFetchMore: MockedResponse = {
   request: {
     query: QUERY_GAMES,
-    variables: { limit: 15, start: 1, where: {} }
+    variables: {
+      limit: parseInt(process.env.NEXT_PUBLIC_GAMES_LIMIT!),
+      start: 1,
+      where: {}
+    }
   },
   result: {
     data: {

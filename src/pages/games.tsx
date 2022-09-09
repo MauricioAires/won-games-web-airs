@@ -57,7 +57,7 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   await apolloClient.query<QueryGames, QueryGamesVariables>({
     query: QUERY_GAMES,
     variables: {
-      limit: 15,
+      limit: parseInt(process.env.NEXT_PUBLIC_GAMES_LIMIT!),
       where: parseQueryStringToWhere({ queryString: query, filterItems }),
       sort: query.sort as string | null
     }

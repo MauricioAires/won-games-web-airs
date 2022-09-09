@@ -32,14 +32,14 @@ describe('Explore page', () => {
     cy.getFields(genreFields)
   })
 
-  it('should show 15 games and show more games when show more is clicked', () => {
-    cy.getByDataCy('game-card').should('have.length', 15)
+  it('should show 9 games and show more games when show more is clicked', () => {
+    cy.getByDataCy('game-card').should('have.length', 9)
 
     cy.findByRole('button', {
       name: /show more/i
     }).click()
 
-    cy.getByDataCy('game-card').should('have.length', 30)
+    cy.getByDataCy('game-card').should('have.length', 18)
   })
 
   it('should sort by price', () => {

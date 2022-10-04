@@ -6,6 +6,6 @@ export default {
   component: WishlistButton
 } as Meta
 
-const Template: Story = (args) => <WishlistButton {...args} />
+const Template: Story = (args) => <WishlistButton id={''} {...args} />
 
 export const Default = Template.bind({})

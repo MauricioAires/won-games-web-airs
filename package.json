@@ -80,7 +80,7 @@
     "apollo": "^2.34.0",
     "cypress": "^10.7.0",
     "cypress-plugin-stripe-elements": "^1.0.2",
-    "eslint": "^8.20.0",
+    "eslint": "^8.35.0",
     "eslint-config-next": "^12.2.2",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
